@@ -23,6 +23,13 @@
             "details": "SAMSUNG ART12TXH",
             "state": "Turn on",
             "time": "at 11pm"
+          },
+          {
+            "name": "Air Coinditionator",
+            "imgSrc": "aireAcondicionado",
+            "details": "SAMSUNG ART12TXH",
+            "state": "Turn on",
+            "time": "at 11pm"
           }
 
     ],

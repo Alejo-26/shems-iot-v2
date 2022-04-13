@@ -16,6 +16,10 @@
       <FileImage nameImage="settingsButton" width="40vw" height="40vw" />
       <p>Settings</p>
     </button>
+    <button id="linkPage" @click="RouterLink('Settings')">
+      <FileImage nameImage="settingsButton" width="40vw" height="40vw" />
+      <p>Settings</p>
+    </button>
   </div>
 </template>
 

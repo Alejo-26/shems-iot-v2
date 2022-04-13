@@ -39,6 +39,12 @@ export default {
     };
   },
   methods: {
+    async guardar() {
+      //Guardar con axios
+      console.log("Guardar Datos");
+      //Routiar a otra pagina
+      this.$router.push({ name: "listDevices" });
+    },
     checkForm(e) {
       this.errors = [];
       e.preventDefault();
@@ -56,6 +62,7 @@ export default {
       }
       if (this.errors.length == 0) {
         //Procede a guardar la informacion
+        this.guardar();
       }
     },
   },

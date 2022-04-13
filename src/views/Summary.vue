@@ -10,6 +10,7 @@ import BartGraphic from "../components/BarChart.vue";
 
 export default {
   data() {
+    //vue-chart.vue
     return {
       chartData: {
         labels: [
@@ -90,6 +91,9 @@ export default {
         maintainAspectRatio: false,
       },
     };
+  },
+  async mounted() {
+    //Consulta los datos para graficar;
   },
   components: {
     "bar-line": BartGraphic,

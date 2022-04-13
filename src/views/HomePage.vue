@@ -86,7 +86,7 @@ export default {
         }
       });
 
-    //Ahorro
+    //Saving
     let url3 = process.env.VUE_APP_API_URL + "resumeGeneral";
     await axios
       .get(url3)

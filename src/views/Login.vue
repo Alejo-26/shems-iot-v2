@@ -37,8 +37,9 @@ export default {
     login() {
       if (this.password == "1234") {
         // this.$store.dispatch("loggedUserAction"); ///Save in vuex
+        //Consulta Api para verificar usuario con AXIOS
         localStorage.setItem("auth", true);
-        this.$router.push({ path: "/dashboard/list-devices" });
+        this.$router.push({ path: "/dashboard/home-resume" });
       }
     },
   },
