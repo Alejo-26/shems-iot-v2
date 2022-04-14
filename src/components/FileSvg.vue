@@ -17,6 +17,6 @@ export default {
     width: String,
     height: String,
   },
-  name: "Image",
+  name: "Image2",
 };
 </script>

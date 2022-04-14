@@ -1,32 +1,45 @@
 <template>
   <div>
     <h2 style="text-align: center; margin-bottom: 2em">Summary</h2>
-    <bar-line :chartData="chartData" :options="options" />
+    <bar-line v-if="loaded" :chartData="chartData" :options="options" />
+    <!-- <h2>{{this.chartData.datasets.data}}</h2> -->
   </div>
 </template>
 
 <script>
+/* eslint-disable */
 import BartGraphic from "../components/BarChart.vue";
+import axios from "axios";
 
 export default {
+  
+  async mounted() {
+    //Consulta los datos para graficar;
+    let url = process.env.VUE_APP_API_URL + "summary";
+    await axios
+      .get(url)
+      .then((response) => {
+        console.log(response.data)
+        this.chartData.datasets.data = response.data.dataNew
+        this.chartData.labels = response.data.labels
+
+        this.loaded=true
+        //this.listDevices = response.data;
+      })
+      .catch((err) => {
+        switch (err.response.status) {
+          case 401:
+            console.log("error");
+            break;
+        }
+      });
+  },
   data() {
     //vue-chart.vue
     return {
+      loaded:false,
       chartData: {
-        labels: [
-          "2015-01",
-          "2015-02",
-          "2015-03",
-          "2015-04",
-          "2015-05",
-          "2015-06",
-          "2015-07",
-          "2015-08",
-          "2015-09",
-          "2015-10",
-          "2015-11",
-          "2015-12",
-        ],
+        labels: [],
         datasets: [
           {
             label: "Bar Chart",
@@ -60,7 +73,7 @@ export default {
               "rgba(255, 159, 64, 1)",
             ],
             pointBorderColor: "#2554FF",
-            data: [12, 19, 3, 5, 2, 3, 20, 3, 5, 6, 2, 1],
+            data: [12,11,10,9,8,7,6,5,4,3,2,1]
           },
         ],
       },
@@ -92,14 +105,10 @@ export default {
       },
     };
   },
-  async mounted() {
-    //Consulta los datos para graficar;
-  },
   components: {
     "bar-line": BartGraphic,
   },
 };
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

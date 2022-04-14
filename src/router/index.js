@@ -4,11 +4,13 @@ import Login from "../views/Login.vue";
 import Register from "../views/Register.vue";
 import ListDevices from "../views/ListDevices.vue";
 import EVRegister from "../views/EvalRegister.vue";
-import ConfortParameter from "../views/ConfortParameter.vue";
-import ActivityToday from "../views/ActivityToday.vue";
+import ComfortParameter from "../views/ComfortParameter.vue";
+import Scheduling from "../views/Scheduling.vue";
 import Summary from "../views/Summary.vue";
 import Dashboard from "../views/UserApp.vue";
 import Home from "../views/HomePage.vue";
+import Community from "../views/Community.vue";
+import Settings from "../views/Settings.vue";
 
 Vue.use(VueRouter);
 
@@ -38,9 +40,9 @@ const routes = [
         meta: { requireAuth: true },
       },
       {
-        path: "confort-parameters",
-        name: "confortParameters",
-        component: ConfortParameter,
+        path: "comfort-parameters",
+        name: "comfortParameters",
+        component: ComfortParameter,
         meta: { requireAuth: true },
       },
       {
@@ -51,9 +53,9 @@ const routes = [
       },
 
       {
-        path: "activity-today",
-        name: "activityToday",
-        component: ActivityToday,
+        path: "scheduling",
+        name: "scheduling",
+        component: Scheduling,
         meta: { requireAuth: true },
       },
       {
@@ -68,6 +70,24 @@ const routes = [
         component: Home,
         meta: { requireAuth: true },
       },
+      {
+        path: "community",
+        name: "community",
+        component: Community,
+        meta: { requireAuth: true },
+      },
+      {
+        path: "settings",
+        name: "settings",
+        component: Settings,
+        meta: { requireAuth: true },
+      },
+      {
+        path: "register",
+        name: "register",
+        component: Register,
+        meta: { requireAuth: true },
+      }
     ],
   },
 ];

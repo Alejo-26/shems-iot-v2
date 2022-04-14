@@ -1,6 +1,6 @@
 <template>
   <div id="container-register">
-    <ImageSVG nameImage="vehiculoElectrico" width="95vw" />
+    <ImageSVG nameImage="electricVehicle" width="95vw" />
     <h1 id="header-form">EV registration</h1>
     <p id="instruction-text">
       Please fil out the following information about your electric vehicle

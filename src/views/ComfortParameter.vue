@@ -60,7 +60,7 @@ export default {
         this.errors.push("Maximum AC temperature is mandatory");
       }
       if (this.errors.length == 0) {
-        //Procede a guardar la informacion
+        //We procede to save the information
       }
     },
   },

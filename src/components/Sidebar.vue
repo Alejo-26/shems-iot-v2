@@ -4,17 +4,18 @@
       <FileImage nameImage="homeButton" width="40vw" height="40vw" />
       <p>Home</p>
     </button>
-    <button id="linkPage" @click="RouterLink('LiveNow')">
-      <FileImage nameImage="liveNowButton" width="40vw" height="40vw" />
-      <p>Live Now</p>
+    <button id="linkPage" @click="RouterLink('Scheduling')">
+      <FileImage nameImage="schedulingButton" width="40vw" height="40vw" />
+      <p>Scheduling</p>
+      <!--before: <p>Live Now</p> -->
     </button>
     <button id="linkPage" @click="RouterLink('Summary')">
       <FileImage nameImage="summaryButton" width="40vw" height="40vw" />
       <p>Summary</p>
     </button>
-    <button id="linkPage" @click="RouterLink('Settings')">
-      <FileImage nameImage="settingsButton" width="40vw" height="40vw" />
-      <p>Settings</p>
+    <button id="linkPage" @click="RouterLink('Community')">
+      <FileImage nameImage="community" width="40vw" height="40vw" />
+      <p>Community</p>
     </button>
     <button id="linkPage" @click="RouterLink('Settings')">
       <FileImage nameImage="settingsButton" width="40vw" height="40vw" />
@@ -35,17 +36,23 @@ export default {
           if (this.$router.currentRoute.name != "home")
             this.$router.push({ name: "home" });
           break;
-        case "LiveNow":
-          if (this.$router.currentRoute.name != "activityToday")
-            this.$router.push({ name: "activityToday" });
+        case "Scheduling":
+          if (this.$router.currentRoute.name != "scheduling")
+            this.$router.push({ name: "scheduling" });
           break;
         case "Summary":
           if (this.$router.currentRoute.name != "summary")
             this.$router.push({ name: "summary" });
           break;
-        case "Settings":
-          this.$router.push({ name: "/" });
+        case "Community":
+          if (this.$router.currentRoutename != "community")
+            this.$router.push({ name: "community" });
           break;
+        case "Settings":
+          if (this.$router.currentRoutename != "register")
+            this.$router.push({ name: "register" });
+          break;
+
         default:
           break;
       }

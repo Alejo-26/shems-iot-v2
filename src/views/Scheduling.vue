@@ -1,6 +1,6 @@
 <template>
   <div id="containerActivity">
-    <h2>Activity Today</h2>
+    <h2>Scheduling</h2>
     <table>
       <tr v-for="(device, index) in listDevices" v-bind:key="index">
         <td>

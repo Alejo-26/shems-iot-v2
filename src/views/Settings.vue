@@ -20,7 +20,7 @@
 
       <tr id="addElement">
         <td><button @click="changeModal" id="addButtonDevice">+</button></td>
-        <td><p for="addButtonDevice">Add a new appliances</p></td>
+        <td><p for="addButtonDevice">Add a new appliance</p></td>
       </tr>
     </table>
 
