@@ -4,38 +4,77 @@
       <SvgImage nameImage="welcome-home" width="100px" height="auto" />
       <p id="letter-icon">SHEMS</p>
     </div>
-    <h2>Register</h2>
+    <h2>Registration</h2>
     <div id="username" class="input-text">
-      <p>User</p>
-      <input type="text" v-model="email" />
+      <p>Family name</p>
+      <input type="text" v-model="newRegistration.userName2" />
     </div>
-    <div id="password" class="input-text">
-      <p>Password</p>
-      <input type="password" v-model="password" />
+
+    
+    <div id="Comfort">
+      <h2><strong>Comfort Parameters</strong></h2>
+      <div id="temMax" class="input-text">
+        <p>Maximum temperature of comfort</p>
+        <input type="number" v-model="newRegistration.temMax2" />
+      </div>
+      <div id="temMin" class="input-text">
+        <p>Minimum temperature of comfort</p>
+        <input type="number" v-model="newRegistration.temMin2" />
+      </div>
+      <div id="temMaxEnvi" class="input-text">
+        <p>Maximum temperature of the enviroment</p>
+        <input type="number" v-model="newRegistration.temMaxEnvi2" />
+      </div>
+      <div id="temMinEnvi" class="input-text">
+        <p>Minimum temperature of the enviroment</p>
+        <input type="number" v-model="newRegistration.temMinEnvi2" />
+      </div>
     </div>
-    <div id="confirmpassword" class="input-text">
-      <p>Confirm Password</p>
-      <input type="password" v-model="confirmPassword" />
-    </div>
-    <div id="confirmpassword" class="input-text">
-      <input value="Register" type="submit" />
+
+
+    <div id="registerButoon" class="input-text">
+      <input  value="Register" type="submit" @click="postData()"/>
+      <input  value="Next" type="submit" @click="nextData()"/>
     </div>
   </div>
 </template>
 
 <script>
+/* eslint-disable */
 import SvgImage from "../components/FileSvg.vue";
+import axios from "axios";
 export default {
   data() {
     return {
-      email: "",
-      password: "",
-      confirmPassword: "",
+      newRegistration:{
+        userName2: "Segafredo",
+        temMax2:23,
+        temMin2:19,
+        temMaxEnvi2:34,
+        temMinEnvi2:34,
+      }
+      
     };
   },
   components: {
     SvgImage,
   },
+  methods:{
+    async postData(){
+      try{
+        const res = await axios.post(process.env.VUE_APP_API_URL + "registration",this.newRegistration)
+        alert("Information saved succesfully")
+      }catch (e){
+        console.error(e)
+      }
+    },
+    async nextData() {
+      //save the data with axios
+      console.log("Data saved");
+      //switch to the other layout
+      this.$router.push({ name: "applianceRegister" });
+    },
+  }
 };
 </script>
 

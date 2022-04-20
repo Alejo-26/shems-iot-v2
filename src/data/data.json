@@ -1,83 +1,256 @@
 {
-    "user":{
-        "name":"Kevin"
+  "user": {
+    "name": "Kevin"
+  },
+  "registration": {
+    "userName2": "Segafredo",
+    "temMax2": 23,
+    "temMin2": 19,
+    "temMaxEnvi2": 34,
+    "temMinEnvi2": 34
+  },
+  "listDevices": [
+    {
+      "name": "Electric vehicle",
+      "imgSrc": "electricVehicle",
+      "details": "TESLA MODEL X",
+      "state": "Recharge",
+      "time": "from 2 am to 5am"
     },
-    "listDevices":[
-        {
-            "name": "Electric vehicle",
-            "imgSrc": "electricVehicle",
-            "details": "TESLA MODEL X",
-            "state": "Recharge",
-            "time": "from 2 am to 5am"
-          },
-          {
-            "name": "Washing machine",
-            "imgSrc": "washingMachine",
-            "details": "LG F4WV310S6E",
-            "state": "Turn off",
-            "time": "at 8pm"
-          },
-          {
-            "name": "Air Coinditionator",
-            "imgSrc": "airConditioner",
-            "details": "SAMSUNG ART12TXH",
-            "state": "Turn on",
-            "time": "at 11pm"
-          },
-          {
-            "name": "Air Coinditionator",
-            "imgSrc": "airConditioner",
-            "details": "SAMSUNG ART12TXH",
-            "state": "Turn on",
-            "time": "at 11pm"
-          }
-
-    ],
-    "resumeGeneral":{
-        "consumptionToday":"45",
-        "activeDevices": 4,
-        "totalDevices": 40
-
+    {
+      "name": "Washing machine",
+      "imgSrc": "washingMachine",
+      "details": "LG F4WV310S6E",
+      "state": "Turn off",
+      "time": "at 8pm"
     },
-    "recommended":{
-        "porcentageSave": "10%",
-        "nameDevice": "Washing machine",
-        "time": "4:35hrs"
+    {
+      "name": "Air Coinditionator",
+      "imgSrc": "airConditioner",
+      "details": "SAMSUNG ART12TXH",
+      "state": "Turn on",
+      "time": "at 11pm"
     },
-    "community":[
-      {
-          "name": "James",
-          "imgSrc": "electricVehicle",
-          "details": "TESLA MODEL X",
-          "state": "Recharge",
-          "time": "from 2 am to 5am"
-        },
-        {
-          "name": "Carlos",
-          "imgSrc": "washingMachine",
-          "details": "LG F4WV310S6E",
-          "state": "Turn off",
-          "time": "at 8pm"
-        },
-        {
-          "name": "Juan",
-          "imgSrc": "airConditioner",
-          "details": "SAMSUNG ART12TXH",
-          "state": "Turn on",
-          "time": "at 11pm"
-        },
-        {
-          "name": "Air Coinditionator",
-          "imgSrc": "airConditioner",
-          "details": "SAMSUNG ART12TXH",
-          "state": "Turn on",
-          "time": "at 11pm"
-        }
-    ],
-    "summary":{
-      "labels":["2021-01", "2021-02", "2021-03", "2021-04", "2021-05", "2021-06",
-                "2021-07", "2021-08", "2021-09", "2021-10", "2021-11", "2021-12"],
-      "dataNew":[8, 5, 5, 5, 5, 5, 15, 5, 5, 2, 7, 5]
+    {
+      "name": "Air Coinditionator",
+      "imgSrc": "airConditioner",
+      "details": "SAMSUNG ART12TXH",
+      "state": "Turn on",
+      "time": "at 11pm"
     }
-  
+  ],
+  "resumeGeneral": {
+    "consumptionToday": "45",
+    "activeDevices": 4,
+    "totalDevices": 40
+  },
+  "recommended": {
+    "porcentageSave": "10%",
+    "nameDevice": "Washing machine",
+    "time": "4:35hrs"
+  },
+  "community": {
+      "labelsWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+      ],
+      "dataWeek": [
+        300,
+        456,
+        324,
+        540,
+        420,
+        348,
+        396
+      ],
+      "labelsHour": [
+        "8:00am",
+        "10:00am",
+        "12:00pm",
+        "14:00pm",
+        "16:00pm",
+        "18:00pm",
+        "20:00pm"
+      ],
+      "dataHour": [
+        25,
+        38,
+        27,
+        45,
+        35,
+        29,
+        33
+      ]
+    },
+  "summary": {
+    "labelsWeek": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday"
+    ],
+    "dataWeek": [
+      300,
+      456,
+      324,
+      540,
+      420,
+      348,
+      396
+    ],
+    "labelsHour": [
+      "8:00am",
+      "10:00am",
+      "12:00pm",
+      "14:00pm",
+      "16:00pm",
+      "18:00pm",
+      "20:00pm"
+    ],
+    "dataHour": [
+      25,
+      38,
+      27,
+      45,
+      35,
+      29,
+      33
+    ]
+  },
+  "scheduling": [
+    {
+      "id": 1,
+      "name": "Electric vehicle",
+      "imgSrc": "electricVehicle",
+      "details": "TESLA MODEL X",
+      "state": "Recharge",
+      "time": "from 2am to 5am",
+      "consumption": "50 kWh"
+    },
+    {
+      "id": 2,
+      "name": "Washing machine",
+      "imgSrc": "washingMachine",
+      "details": "LG F4WV310S6E",
+      "state": "Turn off",
+      "time": "at 8pm",
+      "consumption": "80 kWh"
+    },
+    {
+      "id": 3,
+      "name": "Air Coinditioning",
+      "imgSrc": "airConditioner",
+      "details": "SAMSUNG ART12TXH",
+      "state": "Turn on",
+      "time": "at 11pm",
+      "consumption": "25 kWh"
+    },
+    {
+      "id": 4,
+      "name": "Oven",
+      "imgSrc": "oven",
+      "details": "LG KLM12TXH",
+      "state": "Turn on",
+      "time": "at 8pm",
+      "consumption": "90 kWh"
+    },
+    {
+      "id": 5,
+      "name": "Rice cooker",
+      "imgSrc": "riceCooker",
+      "details": "LG HM457",
+      "state": "Turn on",
+      "time": "at 11am",
+      "consumption": "90 kWh"
+    },
+    {
+      "id": 6,
+      "name": "Humidifier",
+      "imgSrc": "humidifier",
+      "details": "Xiaomi NK600",
+      "state": "Turn on",
+      "time": "at 11am",
+      "consumption": "90 kWh"
+    },
+    {
+      "id": 7,
+      "name": "Robot cleaner",
+      "imgSrc": "robotCleaner",
+      "details": "Xiaomi MK250",
+      "state": "Turn on",
+      "time": "at 11am",
+      "consumption": "90 kWh"
+    },
+    {
+      "name": "Washing machine",
+      "imgSrc": "washingMachine",
+      "details": "LG F4WV310S6E",
+      "state": "Turn off",
+      "time": "at 8pm",
+      "consumption": "80 kWh",
+      "id": 8
+    },
+    {
+      "name": "Washing machine",
+      "imgSrc": "washingMachine",
+      "details": "LG F4WV310S6E",
+      "state": "Turn off",
+      "time": "at 8pm",
+      "consumption": "80 kWh",
+      "id": 9
+    }
+  ],
+  "newSchedules": [
+    {
+      "selected": "Hair dryer",
+      "newTime2": "04:53",
+      "id": 1
+    },
+    {
+      "selected": "Humidifier",
+      "newTime2": "04:53",
+      "id": 2
+    },
+    {
+      "selected": "",
+      "newTime2": "",
+      "id": 3
+    },
+    {
+      "selected": "",
+      "newTime2": "",
+      "id": 4
+    }
+  ],
+  "appliances-registered": [
+    {
+      "name": "Electric vehicle",
+      "imgSrc": "electricVehicle",
+      "details": "TESLA MODEL X",
+      "state": "Recharge",
+      "time": "from 2 am to 5am"
+    },
+    {
+      "name": "Washing machine",
+      "imgSrc": "washingMachine",
+      "details": "LG F4WV310S6E",
+      "state": "Turn off",
+      "time": "at 8pm"
+    },
+    {
+      "name": "Air Coinditionator",
+      "imgSrc": "airConditioner",
+      "details": "SAMSUNG ART12TXH",
+      "state": "Turn on",
+      "time": "at 11pm"
+    }
+  ]
 }

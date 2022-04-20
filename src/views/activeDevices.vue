@@ -1,51 +1,53 @@
 <template>
-  <div id="containerActivity">
-    <h2>Scheduling</h2>
-    <div style="text-align:center;margin-top:20px">
-      <input value="New device schedule" type="submit" @click="postData()" style="background-color: #95cafe;"/>
-    </div>
-    <table>
-      <tr v-for="(device, index) in listDevices" v-bind:key="index">
+  <div id="container-registerDevices">
+    <h2>Active devices</h2>
+    <table class="list-devices">
+      <tr
+        id="deviceElement"
+        v-for="(device, index) in listDevices"
+        :key="index"
+      >
         <td>
-          <div class="containerdDeviceImage">
-            <ImageSVG :nameImage="device.imgSrc" width="50vw" />
-          </div>
+          <button><FileImage :nameImage="device.imgSrc" width="40vw" /></button>
         </td>
         <td>
-          <div id="details-device">
-            <p id="stateDevice">{{ device.name }}</p>
-            <p id="hourDevice">
-              <strong>{{ device.state }}</strong>
-            </p>
-            <p id="hourDevice">{{ device.time }}</p>
-            <p id="hourDevice">{{ device.consumption }}</p>
+          <div class="details-devices">
+            <p>{{ device.name }}</p>
+            <p>{{ device.details }}</p>
           </div>
         </td>
       </tr>
+    </table>
+<!--
       <tr id="addElement">
         <td><button @click="changeModal" id="addButtonDevice">+</button></td>
-        <td><p for="addButtonDevice">New device schedule</p></td>
+        <td><p for="addButtonDevice">Add a new appliances</p></td>
       </tr>
     </table>
 
     <div class="modal-select" v-if="modalIsOpen">
       <div id="containt-data">
-        <button @click="registerData('NewDeviceSchedule')">New device schedule</button>
+        <button @click="registerData('ev')">EV registration</button>
+        <button @click="registerData('comfort')">Comfort Parameter</button>
         <button @click="changeModal">Cancel</button>
       </div>
     </div>
-
-
+    -->
   </div>
 </template>
 
 <script>
-/* eslint-disable */
-import ImageSVG from "../components/FileSvg.vue";
+import FileImage from "../components/FileSvg.vue";
 import axios from "axios";
 export default {
+  data() {
+    return {
+      listDevices: [],
+      modalIsOpen: false,
+    };
+  },
   async mounted() {
-    let url = process.env.VUE_APP_API_URL + "scheduling";
+    let url = process.env.VUE_APP_API_URL + "listDevices";
     await axios
       .get(url)
       .then((response) => {
@@ -59,89 +61,65 @@ export default {
         }
       });
   },
-  data() {
-    return {
-      listDevices: [],
-      modalIsOpen: false,
-      newDevice:
-      {
-      name: "Washing machine",
-      imgSrc: "washingMachine",
-      details: "LG F4WV310S6E",
-      state: "Turn off",
-      time: "at 8pm",
-      consumption:"80 kWh"
-    }
-    };
-  },
-  components: {
-    ImageSVG,
-  },
-  methods:{
-    //Pusehs posts to the server when called
-    async postData(){
-      try{
-        const res = await axios.post(process.env.VUE_APP_API_URL + "scheduling",this.newDevice)
-        alert("Usuario registrado con exito")
-      }catch (e){
-        console.error(e)
-      }
-    },
+  methods: {
     changeModal() {
       this.modalIsOpen = !this.modalIsOpen;
     },
 
     registerData(type) {
       switch (type) {
-        case "NewDeviceSchedule":
-          this.$router.push({ name: "newSchedule" });
+        case "ev":
+          this.$router.push({ name: "evregistration" });
+          return;
+        case "comfort":
+          this.$router.push({ name: "comfortParameters" });
           return;
         default:
           return;
       }
-    }
-  }
+    },
+  },
+  components: {
+    FileImage,
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-
-
-#containerActivity {
+#container-registerDevices {
+  position: relative;
+  height: 100%;
   h2 {
-    text-align: center;
+    margin-left: 1em;
   }
+  table.list-devices {
+    margin-top: 2em;
 
-  table {
-    width: auto;
-    margin: 2em 1em;
+    text-align: center;
+    width: 100%;
     border-collapse: none;
-    border-spacing: 1em 1.2em;
-    tr {
+    border-spacing: 2em 1em;
+    tr#deviceElement {
       td {
         &:nth-child(1) {
-          .containerdDeviceImage {
-            display: flex;
-            justify-content: center;
-            border-radius: 100%;
+          button {
+            border: none;
             background-color: #95cafe;
-            width: clamp(6em, 14vw, 16em);
-            height: clamp(6em, 14vw, 16em);
+            border-radius: 100%;
+            width: 20vw;
+            height: 20vw;
           }
         }
         &:nth-child(2) {
-          #details-device {
-            display: block;
-
+          .details-devices {
             p {
               &:nth-child(1) {
                 font-weight: bold;
-                font-size: clamp(1em, 1.4vw, 1.6em);
-                overflow-wrap: break-word;
-                
+                font-size: clamp(1.2em, 1.6vw, 2em);
               }
-              &:nth-child(1) {
-                font-weight: bold;
+              &:nth-child(2) {
+                font-size: clamp(1em, 1.3vw, 1.6em);
+                color: #b8b7ba;
               }
             }
           }
@@ -168,7 +146,6 @@ export default {
       }
     }
   }
-
   .modal-select {
     display: grid;
     position: absolute;

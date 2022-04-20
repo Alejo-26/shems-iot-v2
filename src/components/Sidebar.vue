@@ -33,6 +33,7 @@ export default {
     RouterLink(page) {
       switch (page) {
         case "Home":
+          
           if (this.$router.currentRoute.name != "home")
             this.$router.push({ name: "home" });
           break;
@@ -45,11 +46,11 @@ export default {
             this.$router.push({ name: "summary" });
           break;
         case "Community":
-          if (this.$router.currentRoutename != "community")
+          if (this.$router.currentRoute.name != "community")
             this.$router.push({ name: "community" });
           break;
         case "Settings":
-          if (this.$router.currentRoutename != "register")
+          if (this.$router.currentRoute.name != "register")
             this.$router.push({ name: "register" });
           break;
 

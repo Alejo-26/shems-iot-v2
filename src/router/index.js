@@ -11,6 +11,10 @@ import Dashboard from "../views/UserApp.vue";
 import Home from "../views/HomePage.vue";
 import Community from "../views/Community.vue";
 import Settings from "../views/Settings.vue";
+import NewSchedule from "../views/NewSchedule.vue";
+import activeDevices from "../views/activeDevices.vue";
+import applianceRegister from "../views/applianceRegister.vue"
+import newAppliance from "../views/newAppliance.vue"
 
 Vue.use(VueRouter);
 
@@ -40,6 +44,12 @@ const routes = [
         meta: { requireAuth: true },
       },
       {
+        path: "active-devices",
+        component: activeDevices,
+        name: "activeDevices",
+        meta: { requireAuth: true },
+      },
+      {
         path: "comfort-parameters",
         name: "comfortParameters",
         component: ComfortParameter,
@@ -56,6 +66,12 @@ const routes = [
         path: "scheduling",
         name: "scheduling",
         component: Scheduling,
+        meta: { requireAuth: true },
+      },
+      {
+        path: "new-schedule",
+        name: "newSchedule",
+        component: NewSchedule,
         meta: { requireAuth: true },
       },
       {
@@ -87,7 +103,19 @@ const routes = [
         name: "register",
         component: Register,
         meta: { requireAuth: true },
-      }
+      },
+      {
+        path: "appliance-register",
+        name: "applianceRegister",
+        component: applianceRegister,
+        meta: { requireAuth: true },
+      },
+      {
+        path: "new-appliance",
+        name: "newAppliance",
+        component: newAppliance,
+        meta: { requireAuth: true },
+      },
     ],
   },
 ];

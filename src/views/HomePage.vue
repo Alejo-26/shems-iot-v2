@@ -148,7 +148,8 @@ export default {
   methods: {
     seeAllDevices() {
       this.$router.push({
-        name: "listDevices",
+        //name: "listDevices",
+        name: "activeDevices",
       });
     },
   },

@@ -1,34 +1,48 @@
 <template>
-  <div id="containerActivity">
-    <h2>Activity Today</h2>
-    <table>
-      <tr v-for="(device, index) in listDevices" v-bind:key="index">
-        <td>
-          <div class="containerdDeviceImage">
-            <ImageSVG :nameImage="device.imgSrc" width="50vw" />
-          </div>
-        </td>
-        <td>
-          <div id="details-device">
-            <p id="stateDevice">{{ device.state }} {{ device.name }}</p>
-            <p id="hourDevice">{{ device.time }}</p>
-          </div>
-        </td>
-      </tr>
-    </table>
+  <div>
+    <h2 style="text-align: center; margin-bottom: 2em">Market</h2>
+
+    <div v-if="optionGraph==='energySold'">
+        <bar-line v-if="loaded" :chartData="chartData" :options="options" />
+    </div>
+
+    <div v-if="optionGraph==='energyBought'">
+      <bar-line2 v-if="loaded" :chartData="chartData2" :options="options" />
+    </div>
+
+
+
+
+    <div style="text-align:center;margin-top:20px">
+        <button style="background-color: #95cafe;margin-right:30px" @click="changeGraph('energySold')">Energy Sold</button>
+        <button style="background-color: #95cafe;" @click="changeGraph('energyBought')">Energy Bought</button>
+    </div>
+
+
   </div>
+  
 </template>
 
 <script>
-import ImageSVG from "../components/FileSvg.vue";
+/* eslint-disable */
+import LineGraphic from "../components/LineChart.vue";
+import LineGraphic2 from "../components/LineChart2.vue";
 import axios from "axios";
+
 export default {
+  
   async mounted() {
+    //Consulta los datos para graficar;
     let url = process.env.VUE_APP_API_URL + "community";
     await axios
       .get(url)
       .then((response) => {
-        this.listDevices = response.data;
+        this.chartData.datasets[0].data = response.data.dataWeek
+        this.chartData.labels = response.data.labelsWeek
+        this.chartData2.datasets[0].data = response.data.dataHour
+        this.chartData2.labels = response.data.labelsHour
+
+        this.loaded=true
       })
       .catch((err) => {
         switch (err.response.status) {
@@ -39,57 +53,76 @@ export default {
       });
   },
   data() {
+    //vue-chart.vue
     return {
-      listDevices: [],
+      optionGraph:"energySold",
+      loaded:false,
+      loaded2:false,
+      chartData: {
+        labels: [],
+        datasets: [
+          {
+            label: "Energy trade",
+            borderWidth: 1,
+            fill: false,
+            borderColor: 'rgb(75, 192, 192)',
+            pointBorderColor: "#2554FF",
+            data: []
+          },
+        ],
+      },
+      chartData2: {
+        labels: [],
+        datasets: [
+          {
+            label: "Line Chart",
+            borderWidth: 1,
+            fill: false,
+            borderColor: 'rgb(75, 192, 192)',
+            pointBorderColor: "#2554FF",
+            data: []
+          },
+        ],
+      },
+      options: {
+        scales: {
+          yAxes: [
+            {
+              ticks: {
+                beginAtZero: true,
+              },
+              gridLines: {
+                display: true,
+              },
+            },
+          ],
+          xAxes: [
+            {
+              gridLines: {
+                display: false,
+              },
+            },
+          ],
+        },
+        legend: {
+          display: true,
+        },
+        responsive: true,
+        maintainAspectRatio: false,
+      },
     };
   },
   components: {
-    ImageSVG,
+    "bar-line": LineGraphic,
+    "bar-line2": LineGraphic2,
   },
+  methods:{
+    changeGraph(timeInterval) {
+      console.log(timeInterval)
+      this.optionGraph = timeInterval;
+    },
+  }
 };
 </script>
 
-<style lang="scss" scoped>
-#containerActivity {
-  h2 {
-    text-align: center;
-  }
-
-  table {
-    width: auto;
-    margin: 2em 1em;
-    border-collapse: none;
-    border-spacing: 1em 1.2em;
-    tr {
-      td {
-        &:nth-child(1) {
-          .containerdDeviceImage {
-            display: flex;
-            justify-content: center;
-            border-radius: 100%;
-            background-color: #95cafe;
-            width: clamp(6em, 14vw, 16em);
-            height: clamp(6em, 14vw, 16em);
-          }
-        }
-        &:nth-child(2) {
-          #details-device {
-            display: block;
-
-            p {
-              &:nth-child(1) {
-                font-weight: bold;
-                font-size: clamp(1em, 1.4vw, 1.6em);
-                overflow-wrap: break-word;
-              }
-              &:nth-child(1) {
-                font-weight: bold;
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-}
-</style>
+<style lang="scss" scoped></style>
