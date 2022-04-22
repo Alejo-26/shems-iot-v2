@@ -1,9 +1,9 @@
 <template>
   <div id="containerActivity">
     <h2>Scheduling</h2>
-    <div style="text-align:center;margin-top:20px">
+<!--     <div style="text-align:center;margin-top:20px">
       <input value="New device schedule" type="submit" @click="postData()" style="background-color: #95cafe;"/>
-    </div>
+    </div> -->
     <table>
       <tr v-for="(device, index) in listDevices" v-bind:key="index">
         <td>
@@ -82,7 +82,6 @@ export default {
     async postData(){
       try{
         const res = await axios.post(process.env.VUE_APP_API_URL + "scheduling",this.newDevice)
-        alert("Usuario registrado con exito")
       }catch (e){
         console.error(e)
       }

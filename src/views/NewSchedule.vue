@@ -7,7 +7,7 @@
     </p>
     <form id="formRegister" @submit="checkForm">
       <label for="device">Select your appliance</label>
-      <select id="device" v-model="payload.selected">
+      <select id="device" v-model="selected">
         <option disabled value="">Please select one</option>
         <option>Diswasher</option>
         <option>Hair dryer</option>
@@ -18,11 +18,11 @@
         <option>Vacuum cleaner</option>
         <option>Washing machine</option>
       </select>
-      <span>Selected: {{ payload.selected }}</span>
+      <span>Selected: {{selected }}</span>
 
 
       <label for="newTime2">New schedule time</label>
-      <input type="time" id="newTime2" v-model="payload.newTime2" />
+      <input type="time" id="newTime2" v-model="newTime2" />
 
       <spam id="errors-form" v-if="errors.length > 0">
         <ul>
@@ -40,21 +40,33 @@
 </template>
 
 <script>
+/* eslint-disable */
 import ImageSVG from "../components/FileSvg.vue";
 import axios from "axios";
 export default {
+ 
   data() {
     return {
      // device: "",
       //newTime2: "",
+      id:1,
       errors: [],
-      payload:{
-        selected:"",
-        newTime2:""
-      }
+      newTime2:"",
+      selected:"",
+      newSchedule:
+      {
+      id:"",
+      name: "",
+      imgSrc: "",
+      details: "Putprove",
+      state: "Putprove",
+      time: "",
+      consumption:"Putprove"
+    }
     
     };
   },
+
   methods: {
     async comeBack() {
       //save the data with axios
@@ -62,16 +74,28 @@ export default {
       //switch to the other layout
       this.$router.push({ name: "scheduling" });
     },
+    fillInformation(){
+      if (this.selected == "Washing machine"){this.newSchedule.name=this.selected,this.newSchedule.imgSrc="washingMachine",this.newSchedule.time=this.newTime2,this.newSchedule.id=2}
+      if (this.selected == "Diswasher"){this.newSchedule.name=this.selected,this.newSchedule.imgSrc="dishWasher",this.newSchedule.time=this.newTime2,this.newSchedule.id=3}
+      if (this.selected == "Oven"){this.newSchedule.name=this.selected,this.newSchedule.imgSrc="oven",this.newSchedule.time=this.newTime2,this.newSchedule.id=4}
+      if (this.selected == "Rice cooker"){this.newSchedule.name=this.selected,this.newSchedule.imgSrc="riceCooker",this.newSchedule.time=this.newTime2,this.newSchedule.id=5}
+      if (this.selected == "Hair dryer"){this.newSchedule.name=this.selected,this.newSchedule.imgSrc="hairDryer",this.newSchedule.time=this.newTime2,this.newSchedule.id=6}
+      if (this.selected == "Humidifier"){this.newSchedule.name=this.selected,this.newSchedule.imgSrc="humidifier",this.newSchedule.time=this.newTime2,this.newSchedule.id=7}
+      if (this.selected == "Robot cleaner"){this.newSchedule.name=this.selected,this.newSchedule.imgSrc="robotCleaner",this.newSchedule.time=this.newTime2,this.newSchedule.id=8}
+      if (this.selected == "Vacuum cleaner"){this.newSchedule.name=this.selected,this.newSchedule.imgSrc="vacuumCleaner",this.newSchedule.time=this.newTime2,this.newSchedule.id=9}
+    },
     async updateData(){
       try{
-        const res = await axios.post(process.env.VUE_APP_API_URL + "newSchedules", this.payload)
-        console.log(this.payload)
+        this.fillInformation()
+        const res = await axios.put(process.env.VUE_APP_API_URL + "scheduling/" + this.newSchedule.id, this.newSchedule)
+        console.log(this.newSchedule)
         alert("Appliance registered succesfully")
         console.log(res)
       }catch (e){
         console.error(e)
       }
     },
+    
     checkForm(e) {
       this.errors = [];
       e.preventDefault();
@@ -83,13 +107,15 @@ export default {
       }
       if (this.errors.length == 0) {
         //Save the information
-        this.guardar();
+        this.updateData();
       }
     },
+    
   },
   components: {
     ImageSVG,
   },
+
 };
 </script>
 

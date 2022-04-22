@@ -14,11 +14,12 @@
           <div class="details-devices">
             <p>{{ device.name }}</p>
             <p>{{ device.details }}</p>
+            <p>{{device.id}}</p>
             <input
               value="delete"
               type="submit"
               style="background-color: #95cafe"
-              @click="deleteData2(device.id)"
+              @click="deleteData(device.id)"
             />
           </div>
         </td>
@@ -83,18 +84,25 @@ export default {
       }
     },
 
-    async deleteData2(nameDevice) {
-      console.log(nameDevice);
+    async updateList(){
+      try{
+        const res = await axios.get(process.env.VUE_APP_API_URL + "appliances-registered")
+        this.listDevices = res.data;
+      }catch(e){
+        console.error(e)
+      }
     },
-   /*  async deleteData(nameDevice) {
+    async deleteData(_id) {
       try {
-        //const res = await axios.delete(process.env.VUE_APP_API_URL + "appliances-registered", {data:{"id":nameDevice}});
+        console.log(_id)
+        const res = await axios.delete(process.env.VUE_APP_API_URL + "appliances-registered/"+ _id);
         console.log(res)
-        alert("Usuario registrado con exito");
+        alert("device deleted");
+        this.updateList()
       } catch (e) {
         console.error(e);
       }
-    }, */
+    },
   },
   components: {
     FileImage,

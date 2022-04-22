@@ -4,10 +4,10 @@
   },
   "registration": {
     "userName2": "Segafredo",
-    "temMax2": 23,
-    "temMin2": 19,
-    "temMaxEnvi2": 34,
-    "temMinEnvi2": 34
+    "temMax2": "23",
+    "temMin2": "45",
+    "temMaxEnvi2": "28",
+    "temMinEnvi2": "34"
   },
   "listDevices": [
     {
@@ -50,43 +50,43 @@
     "time": "4:35hrs"
   },
   "community": {
-      "labelsWeek": [
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday",
-        "Sunday"
-      ],
-      "dataWeek": [
-        300,
-        456,
-        324,
-        540,
-        420,
-        348,
-        396
-      ],
-      "labelsHour": [
-        "8:00am",
-        "10:00am",
-        "12:00pm",
-        "14:00pm",
-        "16:00pm",
-        "18:00pm",
-        "20:00pm"
-      ],
-      "dataHour": [
-        25,
-        38,
-        27,
-        45,
-        35,
-        29,
-        33
-      ]
-    },
+    "labelsWeek": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday"
+    ],
+    "dataWeek": [
+      300,
+      456,
+      324,
+      540,
+      420,
+      348,
+      396
+    ],
+    "labelsHour": [
+      "8:00am",
+      "10:00am",
+      "12:00pm",
+      "14:00pm",
+      "16:00pm",
+      "18:00pm",
+      "20:00pm"
+    ],
+    "dataHour": [
+      25,
+      38,
+      27,
+      45,
+      35,
+      29,
+      33
+    ]
+  },
   "summary": {
     "labelsWeek": [
       "Monday",
@@ -139,10 +139,10 @@
       "id": 2,
       "name": "Washing machine",
       "imgSrc": "washingMachine",
-      "details": "LG F4WV310S6E",
-      "state": "Turn off",
-      "time": "at 8pm",
-      "consumption": "80 kWh"
+      "details": "Putprove",
+      "state": "Putprove",
+      "time": "19:51",
+      "consumption": "Putprove"
     },
     {
       "id": 3,
@@ -228,29 +228,37 @@
       "selected": "",
       "newTime2": "",
       "id": 4
+    },
+    {
+      "selected": "Hair dryer",
+      "newTime2": "20:53",
+      "id": 5
     }
   ],
   "appliances-registered": [
     {
+      "id": 1,
       "name": "Electric vehicle",
       "imgSrc": "electricVehicle",
-      "details": "TESLA MODEL X",
-      "state": "Recharge",
-      "time": "from 2 am to 5am"
+      "details": "TESLA MODEL X"
     },
     {
+      "id": 2,
       "name": "Washing machine",
       "imgSrc": "washingMachine",
-      "details": "LG F4WV310S6E",
-      "state": "Turn off",
-      "time": "at 8pm"
+      "details": "lg"
     },
     {
-      "name": "Air Coinditionator",
-      "imgSrc": "airConditioner",
-      "details": "SAMSUNG ART12TXH",
-      "state": "Turn on",
-      "time": "at 11pm"
+      "id": 4,
+      "name": "Oven",
+      "imgSrc": "oven",
+      "details": "samsung"
+    },
+    {
+      "id": 7,
+      "name": "Humidifier",
+      "imgSrc": "humidifier",
+      "details": "HM"
     }
   ]
 }

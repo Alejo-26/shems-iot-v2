@@ -48,10 +48,10 @@ export default {
     return {
       newRegistration:{
         userName2: "Segafredo",
-        temMax2:23,
-        temMin2:19,
-        temMaxEnvi2:34,
-        temMinEnvi2:34,
+        temMax2:"23",
+        temMin2:"45",
+        temMaxEnvi2:"28",
+        temMinEnvi2:"34",
       }
       
     };

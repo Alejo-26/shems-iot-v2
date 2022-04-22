@@ -20,9 +20,9 @@
       </select>
       <span>Selected: {{ selected }}</span>
 
+      <label for="details">Brand of the appliance</label>
+      <input type="text" id="details"  v-model="newAppliance.details" />
 
-      <label for="newTime2">New schedule time</label>
-      <input type="time" id="newTime2" v-model="newTime2" />
 
       <spam id="errors-form" v-if="errors.length > 0">
         <ul>
@@ -33,31 +33,36 @@
       </spam>
       
       <input type="submit" value="Save" @click="saveData2()"/>
+      <input type="submit" value="Back" @click="comeBack()"/>
     </form>
+
+    
   </div>
 </template>
 
 <script>
 import ImageSVG from "../components/FileSvg.vue";
+import axios from "axios";
 export default {
   data() {
     return {
     
-      
+      newAppliance:{
+        id: "",
+        name:"",
+        imgSrc: "",
+        details: "",
+      },
       errors: [],
       selected: '',
-      payload:{
-        device: "",
-      newTime2: "",
-    },
     };
   },
   methods: {
-    async saveData2() {
+    async comeBack() {
       //save the data with axios
       console.log("Data saved");
       //switch to the other layout
-      this.$router.push({ name: "scheduling" });
+      this.$router.push({ name: "applianceRegister" });
     },
     async DeleteInfo(){
         //axios.delete((process.env.VUE_APP_API_URL + "scheduling",this.newDevice))
@@ -74,7 +79,27 @@ export default {
       }
       if (this.errors.length == 0) {
         //Save the information
-        this.guardar();
+      }
+    },
+    fillInformation(){
+      if (this.selected == "Washing machine"){this.newAppliance.name=this.selected,this.newAppliance.imgSrc="washingMachine",this.newAppliance.id=2}
+      if (this.selected == "Diswasher"){this.newAppliance.name=this.selected,this.newAppliance.imgSrc="dishWasher",this.newAppliance.id=3}
+      if (this.selected == "Oven"){this.newAppliance.name=this.selected,this.newAppliance.imgSrc="oven",this.newAppliance.id=4}
+      if (this.selected == "Rice cooker"){this.newAppliance.name=this.selected,this.newAppliance.imgSrc="riceCooker",this.newAppliance.id=5}
+      if (this.selected == "Hair dryer"){this.newAppliance.name=this.selected,this.newAppliance.imgSrc="hairDryer",this.newAppliance.id=6}
+      if (this.selected == "Humidifier"){this.newAppliance.name=this.selected,this.newAppliance.imgSrc="humidifier",this.newAppliance.id=7}
+      if (this.selected == "Robot cleaner"){this.newAppliance.name=this.selected,this.newAppliance.imgSrc="robotCleaner",this.newAppliance.id=8}
+      if (this.selected == "Vacuum cleaner"){this.newAppliance.name=this.selected,this.newAppliance.imgSrc="vacuumCleaner",this.newAppliance.id=9}
+    },
+    async saveData2(){
+      try{
+        this.fillInformation()
+        const res = await axios.post(process.env.VUE_APP_API_URL + "appliances-registered", this.newAppliance)
+        console.log(this.payload)
+        alert("Appliance registered succesfully")
+        console.log(res)
+      }catch (e){
+        console.error(e)
       }
     },
   },
