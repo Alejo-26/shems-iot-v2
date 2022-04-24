@@ -1,14 +1,11 @@
 <template>
   <div id="containerActivity">
     <h2>Scheduling</h2>
-<!--     <div style="text-align:center;margin-top:20px">
-      <input value="New device schedule" type="submit" @click="postData()" style="background-color: #95cafe;"/>
-    </div> -->
     <table>
       <tr v-for="(device, index) in listDevices" v-bind:key="index">
         <td>
-          <div class="containerdDeviceImage">
-            <ImageSVG :nameImage="device.imgSrc" width="50vw" />
+          <div class="containerdDeviceImage" >
+            <ImageSVG :nameImage="device.imgSrc" width="50vw"  />
           </div>
         </td>
         <td>
@@ -19,6 +16,7 @@
             </p>
             <p id="hourDevice">{{ device.time }}</p>
             <p id="hourDevice">{{ device.consumption }}</p>
+            <button style="background-color: #95cafe" @click="graphConsumption(device.name)">See consumption</button>
           </div>
         </td>
       </tr>
@@ -63,15 +61,6 @@ export default {
     return {
       listDevices: [],
       modalIsOpen: false,
-      newDevice:
-      {
-      name: "Washing machine",
-      imgSrc: "washingMachine",
-      details: "LG F4WV310S6E",
-      state: "Turn off",
-      time: "at 8pm",
-      consumption:"80 kWh"
-    }
     };
   },
   components: {
@@ -79,13 +68,7 @@ export default {
   },
   methods:{
     //Pusehs posts to the server when called
-    async postData(){
-      try{
-        const res = await axios.post(process.env.VUE_APP_API_URL + "scheduling",this.newDevice)
-      }catch (e){
-        console.error(e)
-      }
-    },
+
     changeModal() {
       this.modalIsOpen = !this.modalIsOpen;
     },
@@ -98,6 +81,14 @@ export default {
         default:
           return;
       }
+    },
+    async graphConsumption(devicename2){
+      try{
+        const res = await axios.post(process.env.VUE_APP_API_URL + "graphSelected",{"nameDevice":devicename2})
+        this.$router.push({ name: "consumptionAppli" });
+      }catch (e){
+        console.error(e)
+      }  
     }
   }
 };

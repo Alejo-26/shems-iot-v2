@@ -7,7 +7,7 @@
     </div>
 
     <div v-if="optionGraph==='energyBought'">
-      <bar-line2 v-if="loaded" :chartData="chartData2" :options="options" />
+      <bar-line v-if="loaded" :chartData="chartData2" :options="options" />
     </div>
 
 
@@ -26,7 +26,6 @@
 <script>
 /* eslint-disable */
 import LineGraphic from "../components/LineChart.vue";
-import LineGraphic2 from "../components/LineChart2.vue";
 import axios from "axios";
 
 export default {
@@ -114,14 +113,39 @@ export default {
   },
   components: {
     "bar-line": LineGraphic,
-    "bar-line2": LineGraphic2,
   },
   methods:{
     changeGraph(timeInterval) {
+      this.loaded=false
       console.log(timeInterval)
       this.optionGraph = timeInterval;
+      this.updateData();
     },
-  }
+    async updateData() {
+    //we update the data for the graph;
+    let url = process.env.VUE_APP_API_URL + "community";
+    await axios
+      .get(url)
+      .then((response) => {
+        console.log(response.data)
+        this.chartData.datasets[0].data = response.data.dataWeek
+        this.chartData.labels = response.data.labelsWeek
+        this.chartData2.datasets[0].data = response.data.dataHour
+        this.chartData2.labels = response.data.labelsHour
+
+        this.loaded=true
+        //this.listDevices = response.data;
+      })
+      .catch((err) => {
+        switch (err.response.status) {
+          case 401:
+            console.log("error");
+            break;
+        }
+      });
+    },
+  },
+  
 };
 </script>
 

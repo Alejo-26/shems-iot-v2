@@ -14,7 +14,7 @@
           <div class="details-devices">
             <p>{{ device.name }}</p>
             <p>{{ device.details }}</p>
-            <p>{{device.id}}</p>
+            <!--<p>{{device.id}}</p>-->
             <input
               value="delete"
               type="submit"

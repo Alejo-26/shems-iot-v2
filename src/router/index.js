@@ -15,6 +15,7 @@ import NewSchedule from "../views/NewSchedule.vue";
 import activeDevices from "../views/activeDevices.vue";
 import applianceRegister from "../views/applianceRegister.vue"
 import newAppliance from "../views/newAppliance.vue"
+import consumptionAppli from "../views/consumptionAppli.vue"
 
 Vue.use(VueRouter);
 
@@ -116,6 +117,12 @@ const routes = [
         component: newAppliance,
         meta: { requireAuth: true },
       },
+      {
+        path: "consumption-appli",
+        name: "consumptionAppli",
+        component: consumptionAppli,
+        meta: { requireAuth: true },
+      }
     ],
   },
 ];

@@ -17,11 +17,22 @@
         <option>Robot cleaner</option>
         <option>Vacuum cleaner</option>
         <option>Washing machine</option>
+        <option>Other</option>
       </select>
       <span>Selected: {{ selected }}</span>
 
-      <label for="details">Brand of the appliance</label>
-      <input type="text" id="details"  v-model="newAppliance.details" />
+      <div v-if="selected==='Other'">
+        <label for="nameAppli">Name of the appliance</label>
+        <input type="text" id="nameAppli"  v-model="newAppliance.name" />
+        <label for="consumption">Consumption in W</label>
+        <input type="text" id="consumption"  v-model="newAppliance.consumption" />
+      </div>
+      
+      <div>
+        <label for="details">Brand of the appliance</label>
+        <input type="text" id="details"  v-model="newAppliance.details" />
+      </div>
+      
 
 
       <spam id="errors-form" v-if="errors.length > 0">
@@ -48,10 +59,11 @@ export default {
     return {
     
       newAppliance:{
-        id: "",
+        id: 12,
         name:"",
-        imgSrc: "",
+        imgSrc: "welcome-home",
         details: "",
+        consumption:"",
       },
       errors: [],
       selected: '',

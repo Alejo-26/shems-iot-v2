@@ -1,19 +1,18 @@
 <template>
   <div>
-    <h2 style="text-align: center; margin-bottom: 2em">Summary</h2>
+    <h2 style="text-align: center; margin-bottom: 2em">{{title}}</h2>
     
     
-    <div v-if="optionGraph==='day'">
+    <div v-if="title==='Oven'">
       <bar-line v-if="loaded" :chartData="chartData2" :options="options" />
     </div>
 
-    <div v-if="optionGraph==='week'">
+    <div v-if="title==='Washing machine'">
       <bar-line v-if="loaded" :chartData="chartData" :options="options" />
     </div>
 
     <div style="text-align:center;margin-top:20px">
-      <button style="background-color: #95cafe;margin-right:30px" @click="changeGraph('day')">Day</button>
-      <button style="background-color: #95cafe;" @click="changeGraph('week')">Week</button>
+      <input type="submit" value="Back" @click="comeBack()" style="background-color: #95cafe;"/>
     </div>
     
     <!-- <h2>{{this.chartData.datasets.data}}</h2> -->
@@ -22,46 +21,30 @@
 
 <script>
 /* eslint-disable */
-import BartGraphic from "../components/BarChart.vue";
+import LineGraphic from "../components/LineChart.vue";
 import axios from "axios";
 
 export default {
   
   async mounted() {
-    //Consulta los datos para graficar;
-    let url = process.env.VUE_APP_API_URL + "summary";
-    await axios
-      .get(url)
-      .then((response) => {
-        console.log(response.data)
-        this.chartData.datasets[0].data = response.data.dataWeek
-        this.chartData.labels = response.data.labelsWeek
-        this.chartData2.datasets[0].data = response.data.dataHour
-        this.chartData2.labels = response.data.labelsHour
-
-        this.loaded=true
-        //this.listDevices = response.data;
-      })
-      .catch((err) => {
-        switch (err.response.status) {
-          case 401:
-            console.log("error");
-            break;
-        }
-      });
+    this.llamada1();
+    this.llamada2();
+    
   },
   data() {
     //vue-chart.vue
     return {
       optionGraph:"day",
+      title:"",
       loaded:false,
       loaded2:false,
       chartData: {
         labels: [],
         datasets: [
           {
-            label: "Consumption in khW",
+            label: "Appliance Consumption",
             borderWidth: 1,
+            fill: false,
             backgroundColor: '#95cafe',
             pointBorderColor: "#2554FF",
             data: []
@@ -74,7 +57,8 @@ export default {
           {
             label: "Consumption in khW",
             borderWidth: 1,
-            backgroundColor: '#95cafe',
+            fill: false,
+            borderColor: 'rgb(75, 192, 192)',
             pointBorderColor: "#2554FF",
             data: []
           },
@@ -109,26 +93,24 @@ export default {
     };
   },
   components: {
-    "bar-line": BartGraphic,
+    "bar-line": LineGraphic,
   },
   methods:{
     changeGraph(timeInterval) {
-      this.loaded=false
-      console.log(timeInterval);
+      console.log(timeInterval)
       this.optionGraph = timeInterval;
-      this.updateData()
     },
-    async updateData() {
-    //we update the data for the graph;
-    let url = process.env.VUE_APP_API_URL + "summary";
+    async llamada1(){
+      //Consulta los datos para graficar;
+    let url = process.env.VUE_APP_API_URL + "consumption-appli";
     await axios
       .get(url)
       .then((response) => {
         console.log(response.data)
-        this.chartData.datasets[0].data = response.data.dataWeek
-        this.chartData.labels = response.data.labelsWeek
-        this.chartData2.datasets[0].data = response.data.dataHour
-        this.chartData2.labels = response.data.labelsHour
+        this.chartData.datasets[0].data = response.data.dataWashing
+        this.chartData.labels = response.data.labelsWashing
+        this.chartData2.datasets[0].data = response.data.dataDefault
+        this.chartData2.labels = response.data.labelsDefault
 
         this.loaded=true
         //this.listDevices = response.data;
@@ -140,8 +122,34 @@ export default {
             break;
         }
       });
-  },
+    },
+    async llamada2(){
+      //Consulta los datos para graficar;
+    let url = process.env.VUE_APP_API_URL + "graphSelected";
+    await axios
+      .get(url)
+      .then((response) => {
+        console.log(response.data)
+        this.title = response.data.nameDevice;
+      })
+      .catch((err) => {
+        switch (err.response.status) {
+          case 401:
+            console.log("error");
+            break;
+        }
+      });
+    },
+
+    async comeBack() {
+      //switch to the other layout
+      this.$router.push({ name: "scheduling" });
+    },
+
   }
+
+
+  
 };
 </script>
 

@@ -9,14 +9,16 @@
       <label for="device">Select your appliance</label>
       <select id="device" v-model="selected">
         <option disabled value="">Please select one</option>
-        <option>Diswasher</option>
+        <option v-for="(device,index) in listDevices" v-bind:key="index">{{device.name}}</option>
+<!--         <option>Diswasher</option>
         <option>Hair dryer</option>
         <option>Humidifier</option>
         <option>Oven</option>
         <option>Rice cooker</option>
         <option>Robot cleaner</option>
         <option>Vacuum cleaner</option>
-        <option>Washing machine</option>
+        <option>Washing machine</option> -->
+
       </select>
       <span>Selected: {{selected }}</span>
 
@@ -45,10 +47,26 @@ import ImageSVG from "../components/FileSvg.vue";
 import axios from "axios";
 export default {
  
+ async mounted() {
+    let url = process.env.VUE_APP_API_URL + "appliances-registered";
+    await axios
+      .get(url)
+      .then((response) => {
+        this.listDevices = response.data;
+      })
+      .catch((err) => {
+        switch (err.response.status) {
+          case 401:
+            console.log("error");
+            break;
+        }
+      });
+  },
   data() {
     return {
      // device: "",
       //newTime2: "",
+      listDevices:[],
       id:1,
       errors: [],
       newTime2:"",
@@ -68,6 +86,7 @@ export default {
   },
 
   methods: {
+    
     async comeBack() {
       //save the data with axios
       console.log("Data saved");

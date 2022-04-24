@@ -5,15 +5,16 @@
     <p id="instruction-text">
       Please fil out the following information about your electric vehicle
     </p>
-    <form id="formRegister" @submit="checkForm">
+    <!--<form id="formRegister" @submit="checkForm">-->
+    <form id="formRegister" >
       <label for="model">Model of the Vehicle</label>
-      <input type="text" id="model" placeholder="" v-model="model" />
+      <input type="text" id="model" v-model="newVehicle.name" />
       <label for="depaA">Departure time</label>
-      <input type="time" id="depaA" v-model="departure" />
+      <input type="time" id="depaA" v-model="newVehicle.departure" />
       <label for="arrival">Arrival time</label>
-      <input type="time" id="arrival" v-model="arrival" />
+      <input type="time" id="arrival" v-model="newVehicle.arrival" />
       <label for="baterry">Minimum baterry</label>
-      <input type="number" id="baterry" v-model="miniBaterry" />
+      <input type="number" id="baterry" v-model="newVehicle.miniBaterry" />
       <spam id="errors-form" v-if="errors.length > 0">
         <ul>
           <li v-for="(error, index) in errors" v-bind:key="index">
@@ -21,29 +22,46 @@
           </li>
         </ul>
       </spam>
-      <input type="submit" value="Next" />
+      <input type="submit" value="Back" @click="comeBack()"/>
+      <input type="submit" value="Next" @click="saveData2()"/>
     </form>
   </div>
 </template>
 
 <script>
 import ImageSVG from "../components/FileSvg.vue";
+import axios from "axios";
 export default {
   data() {
     return {
-      model: "",
+      newVehicle:{
+      id:1,
+      name: "",
       departure: "",
       arrival: "",
       miniBaterry: "",
-      errors: [],
+      imgSrc: "electricVehicle",
+      },
+      errors: []
     };
   },
   methods: {
-    async guardar() {
-      //Guardar con axios
-      console.log("Guardar Datos");
-      //Routiar a otra pagina
-      this.$router.push({ name: "listDevices" });
+    async comeBack() {
+      //switch to the other layout
+      this.$router.push({ name: "applianceRegister" });
+    },
+
+    async saveData2(){
+      try{
+        alert("Electric vehicle registered succesfully")
+        //const res = await axios.put(process.env.VUE_APP_API_URL + "appliances-registered/" + this.newVehicle.id, this.newVehicle)
+        const res = await axios.post(process.env.VUE_APP_API_URL + "appliances-registered", this.newVehicle)
+        console.log(this.payload)
+        console.log(res)
+        this.$router.push({ name: "applianceRegister" })
+      }catch (e){
+        console.error(e)
+      }
     },
     checkForm(e) {
       this.errors = [];
@@ -61,8 +79,8 @@ export default {
         this.errors.push("Minimum battery is mandatory");
       }
       if (this.errors.length == 0) {
-        //Procede a guardar la informacion
-        this.guardar();
+        //Save Information
+        //this.saveData2();
       }
     },
   },
