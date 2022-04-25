@@ -4,7 +4,7 @@
     <table>
       <tr v-for="(device, index) in listDevices" v-bind:key="index">
         <td>
-          <div class="containerdDeviceImage" >
+          <div class="containerdDeviceImage" @click="graphConsumption(device.name)">
             <ImageSVG :nameImage="device.imgSrc" width="50vw"  />
           </div>
         </td>

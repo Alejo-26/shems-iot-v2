@@ -13,7 +13,8 @@
         <td>
           <div class="details-devices">
             <p>{{ device.name }}</p>
-            <p>{{ device.details }}</p>
+            <p><strong>From: </strong>{{ device.starting_time}}</p>
+            <p><strong>To: </strong>{{ device.ending_time}}</p>
           </div>
         </td>
       </tr>
@@ -119,7 +120,11 @@ export default {
               }
               &:nth-child(2) {
                 font-size: clamp(1em, 1.3vw, 1.6em);
-                color: #b8b7ba;
+                color: #1a1a1bc4;
+              }
+              &:nth-child(3) {
+                font-size: clamp(1em, 1.3vw, 1.6em);
+                color: #1a1a1bc4;
               }
             }
           }

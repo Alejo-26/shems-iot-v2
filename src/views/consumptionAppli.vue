@@ -1,15 +1,20 @@
 <template>
   <div>
     <h2 style="text-align: center; margin-bottom: 2em">{{title}}</h2>
-    
-    
-    <div v-if="title==='Oven'">
+
+    <div v-if="title==='Washing machine'">
       <bar-line v-if="loaded" :chartData="chartData2" :options="options" />
     </div>
 
-    <div v-if="title==='Washing machine'">
-      <bar-line v-if="loaded" :chartData="chartData" :options="options" />
+    <div v-if="title==='Diswasher'">
+      <bar-line v-if="loaded" :chartData="chartData3" :options="options" />
     </div>
+
+    <div v-if="title==='Oven'">
+      <bar-line v-if="loaded" :chartData="chartData4" :options="options" />
+    </div>
+
+    
 
     <div style="text-align:center;margin-top:20px">
       <input type="submit" value="Back" @click="comeBack()" style="background-color: #95cafe;"/>
@@ -34,11 +39,9 @@ export default {
   data() {
     //vue-chart.vue
     return {
-      optionGraph:"day",
       title:"",
       loaded:false,
-      loaded2:false,
-      chartData: {
+      chartData2: {
         labels: [],
         datasets: [
           {
@@ -51,7 +54,33 @@ export default {
           },
         ],
       },
-      chartData2: {
+      chartData3: {
+        labels: [],
+        datasets: [
+          {
+            label: "Consumption in khW",
+            borderWidth: 1,
+            fill: false,
+            borderColor: 'rgb(75, 192, 192)',
+            pointBorderColor: "#2554FF",
+            data: []
+          },
+        ],
+      },
+      chartData4: {
+        labels: [],
+        datasets: [
+          {
+            label: "Consumption in khW",
+            borderWidth: 1,
+            fill: false,
+            borderColor: 'rgb(75, 192, 192)',
+            pointBorderColor: "#2554FF",
+            data: []
+          },
+        ],
+      },
+      chartData5: {
         labels: [],
         datasets: [
           {
@@ -96,10 +125,6 @@ export default {
     "bar-line": LineGraphic,
   },
   methods:{
-    changeGraph(timeInterval) {
-      console.log(timeInterval)
-      this.optionGraph = timeInterval;
-    },
     async llamada1(){
       //Consulta los datos para graficar;
     let url = process.env.VUE_APP_API_URL + "consumption-appli";
@@ -107,10 +132,14 @@ export default {
       .get(url)
       .then((response) => {
         console.log(response.data)
-        this.chartData.datasets[0].data = response.data.dataWashing
-        this.chartData.labels = response.data.labelsWashing
-        this.chartData2.datasets[0].data = response.data.dataDefault
-        this.chartData2.labels = response.data.labelsDefault
+        this.chartData2.datasets[0].data = response.data.dataWashingMachine
+        this.chartData2.labels = response.data.labelsWashingMachine
+        this.chartData3.datasets[0].data = response.data.dataDishwasher
+        this.chartData3.labels = response.data.labelsDiswasher
+        this.chartData4.datasets[0].data = response.data.dataOven
+        this.chartData4.labels = response.data.labelsOven
+        this.chartData5.datasets[0].data = response.data.dataDefault
+        this.chartData5.labels = response.data.labelsDefault
 
         this.loaded=true
         //this.listDevices = response.data;

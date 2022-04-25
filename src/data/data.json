@@ -2,41 +2,40 @@
   "user": {
     "name": "Kevin"
   },
-  "registration": {
+  "oldParameters": {
     "userName2": "Segafredo",
-    "temMax2": "23",
-    "temMin2": "45",
-    "temMaxEnvi2": "28",
-    "temMinEnvi2": "34"
+    "Tin_max": "23", 
+    "Tin_min": "45",
+    "Tewh_max":"28",
+    "Tewh_min":"18",
+    "Cess_thresh_low":"0.2",
+    "Cess_thresh_high":"0.8",  
+    "Cpev_thresh_low":"0.2",   
+    "Cpev_thresh_high":"0.8",
+    "time_arrival":""
+    
   },
   "listDevices": [
     {
       "name": "Electric vehicle",
       "imgSrc": "electricVehicle",
-      "details": "TESLA MODEL X",
       "state": "Recharge",
-      "time": "from 2 am to 5am"
+      "starting_time":"3am",
+      "ending_time":"5am"
     },
     {
       "name": "Washing machine",
       "imgSrc": "washingMachine",
-      "details": "LG F4WV310S6E",
       "state": "Turn off",
-      "time": "at 8pm"
+      "starting_time":"3am",
+      "ending_time":"5am"
     },
     {
       "name": "Air Coinditionator",
       "imgSrc": "airConditioner",
-      "details": "SAMSUNG ART12TXH",
       "state": "Turn on",
-      "time": "at 11pm"
-    },
-    {
-      "name": "Air Coinditionator",
-      "imgSrc": "airConditioner",
-      "details": "SAMSUNG ART12TXH",
-      "state": "Turn on",
-      "time": "at 11pm"
+      "starting_time":"3am",
+      "ending_time":"5am"
     }
   ],
   "resumeGeneral": {
@@ -132,8 +131,8 @@
       "imgSrc": "electricVehicle",
       "details": "TESLA MODEL X",
       "state": "Recharge",
-      "time": "from 2am to 5am",
-      "consumption": "50 kWh"
+      "time": "from 2:00am to 5:00am",
+      "consumption": "20kV"
     },
     {
       "id": 2,
@@ -141,17 +140,17 @@
       "imgSrc": "washingMachine",
       "details": "Putprove",
       "state": "Putprove",
-      "time": "19:51",
-      "consumption": "Putprove"
+      "time": "from 21:00pm to 22:00pm",
+      "consumption": "1500W"
     },
     {
       "id": 3,
-      "name": "Air Coinditioning",
-      "imgSrc": "airConditioner",
-      "details": "SAMSUNG ART12TXH",
+      "name": "Diswasher",
+      "imgSrc": "dishWasher",
+      "details": "Xiaomi MK250",
       "state": "Turn on",
-      "time": "at 11pm",
-      "consumption": "25 kWh"
+      "time": "from 20:00pm to 20:30pm",
+      "consumption": "1200W"
     },
     {
       "id": 4,
@@ -159,53 +158,8 @@
       "imgSrc": "oven",
       "details": "LG KLM12TXH",
       "state": "Turn on",
-      "time": "at 8pm",
-      "consumption": "90 kWh"
-    },
-    {
-      "id": 5,
-      "name": "Rice cooker",
-      "imgSrc": "riceCooker",
-      "details": "LG HM457",
-      "state": "Turn on",
-      "time": "at 11am",
-      "consumption": "90 kWh"
-    },
-    {
-      "id": 6,
-      "name": "Humidifier",
-      "imgSrc": "humidifier",
-      "details": "Xiaomi NK600",
-      "state": "Turn on",
-      "time": "at 11am",
-      "consumption": "90 kWh"
-    },
-    {
-      "id": 7,
-      "name": "Robot cleaner",
-      "imgSrc": "robotCleaner",
-      "details": "Xiaomi MK250",
-      "state": "Turn on",
-      "time": "at 11am",
-      "consumption": "90 kWh"
-    },
-    {
-      "name": "Washing machine",
-      "imgSrc": "washingMachine",
-      "details": "LG F4WV310S6E",
-      "state": "Turn off",
-      "time": "at 8pm",
-      "consumption": "80 kWh",
-      "id": 8
-    },
-    {
-      "name": "Washing machine",
-      "imgSrc": "washingMachine",
-      "details": "LG F4WV310S6E",
-      "state": "Turn off",
-      "time": "at 8pm",
-      "consumption": "80 kWh",
-      "id": 9
+      "time": "from 19:00am to 19:30am",
+      "consumption": "700W"
     }
   ],
   "newSchedules": [
@@ -271,10 +225,10 @@
     }
   ],
   "graphSelected": {
-    "nameDevice": "Washing machine"
+    "nameDevice": "Oven"
   },
   "consumption-appli": {
-    "labelsWashing": [
+    "labelsWashingMachine": [
       "8:00am",
       "10:00am",
       "12:00pm",
@@ -283,7 +237,7 @@
       "18:00pm",
       "20:00pm"
     ],
-    "dataWashing": [
+    "dataWashingMachine": [
       1500,
       1500,
       0,
@@ -292,7 +246,7 @@
       1500,
       0
     ],
-    "labelsOven": [
+    "labelsDishwasher": [
       "8:00am",
       "10:00am",
       "12:00pm",
@@ -301,7 +255,7 @@
       "18:00pm",
       "20:00pm"
     ],
-    "dataHour": [
+    "dataDiswasher": [
       1500,
       1500,
       0,
@@ -309,6 +263,24 @@
       1500,
       1500,
       0
+    ],
+    "labelsOver": [
+      "8:00am",
+      "10:00am",
+      "12:00pm",
+      "14:00pm",
+      "16:00pm",
+      "18:00pm",
+      "20:00pm"
+    ],
+    "dataOven": [
+      20,
+      50,
+      80,
+      50,
+      20,
+      40,
+      10
     ],
     "labelsDefault": [
       "8:00am",

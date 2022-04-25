@@ -62,7 +62,7 @@ export default {
   methods:{
     async postData(){
       try{
-        const res = await axios.post(process.env.VUE_APP_API_URL + "registration",this.newRegistration)
+        const res = await axios.post(process.env.VUE_APP_API_URL + "oldParameters",this.newRegistration)
         alert("Information saved succesfully")
       }catch (e){
         console.error(e)
