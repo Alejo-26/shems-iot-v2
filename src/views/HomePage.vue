@@ -1,7 +1,11 @@
 <template>
   <div id="container-home">
-    <label id="welcome-message">Hi {{ this.nameUser.name }}!</label>
+    <label id="welcome-message">Hello family {{ this.nameUser.name }} <br><br> Active devices</label>
+    
+    
+    
     <div id="resume-devices">
+      
       <button v-if="this.allDevices.length > 0">
         <FileImage :nameImage="this.allDevices[0].imgSrc" width="60vw" />
         <p>{{ this.allDevices[0].name }}</p>
@@ -17,39 +21,27 @@
         </button>
       </div>
     </div>
-    <div id="resume-consuptiom">
-      <div id="detailsElem">
-        <h2>{{ this.infoResume.consumptionToday }}kWh</h2>
+    <div style="margin:30px">
+      <div id="detailsElem" style="background-color: #95cafe;text-align: center">
+        <h2>{{ this.single_values2.consumption }}</h2>
         <p>Consumption today</p>
       </div>
-      <div id="detailsElem">
-        <h2>
-          {{
-            this.infoResume.activeDevices > 9
-              ? this.infoResume.activeDevices
-              : "0" + String(this.infoResume.activeDevices)
-          }}/{{
-            this.infoResume.totalDevices > 9
-              ? this.infoResume.totalDevices
-              : "0" + String(this.infoResume.totalDevices)
-          }}
-        </h2>
-        <p>Active devices</p>
+      <br>
+      <div id="detailsElem" style="background-color: #95cafe;text-align: center">
+        <h2>{{ this.single_values2.ESS_bateery }}</h2>
+        <p>House battery level</p>
+      </div>
+      <br>
+      <div id="detailsElem" style="background-color: #95cafe;text-align: center">
+        <h2>{{ this.single_values2.EV_battery }}</h2>
+        <p>Electric Vehicle battery level</p>
       </div>
     </div>
-    <div id="advice">
-      <div id="advice-text">
-        <p id="head-text">
-          Switch off and save {{ this.devicesRecommend.porcentageSave }}
-        </p>
-        <p id="descrip-text">
-          It seems your {{ this.devicesRecommend.nameDevice }} is on once since
-          {{ this.devicesRecommend.time }}
-        </p>
-      </div>
-      <button id="turn-button">Turn Off</button>
-    </div>
+    
+
   </div>
+  
+  
 </template>
 
 <script>
@@ -72,11 +64,13 @@ export default {
         }
       });
     //Devices
-    let url2 = process.env.VUE_APP_API_URL + "listDevices";
+    let url2 = process.env.VUE_APP_API_URL + "home";
     await axios
       .get(url2)
       .then((response) => {
-        this.allDevices = response.data;
+        console.log(response.data.single_values.consumption)
+        this.allDevices = response.data.listDevices;
+        this.single_values2=response.data.single_values;
       })
       .catch((err) => {
         switch (err.response.status) {
@@ -86,39 +80,12 @@ export default {
         }
       });
 
-    //Saving
-    let url3 = process.env.VUE_APP_API_URL + "resumeGeneral";
-    await axios
-      .get(url3)
-      .then((response) => {
-        this.infoResume = response.data;
-      })
-      .catch((err) => {
-        switch (err.response.status) {
-          case 401:
-            console.log("error");
-            break;
-        }
-      });
-    //resume
-    let url4 = process.env.VUE_APP_API_URL + "recommended";
-    await axios
-      .get(url4)
-      .then((response) => {
-        this.devicesRecommend = response.data;
-      })
-      .catch((err) => {
-        switch (err.response.status) {
-          case 401:
-            console.log("error");
-            break;
-        }
-      });
   },
   data() {
     return {
       nameUser: "",
       allDevices: [
+
         {
           name: "",
           imgSrc: "welcome-home",
@@ -133,13 +100,13 @@ export default {
           state: "",
           time: "",
         },
+        
       ],
-      infoResume: {
-        consumptionToday: "45",
-        activeDevices: 4,
-        totalDevices: 40,
-      },
-      devicesRecommend: { porcentageSave: "", nameDevice: "", time: "" },
+      single_values2: {
+        ESS_bateery: "",
+        EV_battery: "",
+        consumption: "",
+      }
     };
   },
   components: {
@@ -167,12 +134,18 @@ export default {
     font-weight: bold;
     grid-row: 1/2;
   }
+  #welcome-message2 {
+    font-size: clamp(1.3em, 3vw, 4em);
+    color: #1e486e;
+    font-weight: bold;
+    grid-row: 1/2;
+  }
   #resume-devices {
     display: grid;
     grid-row: 2/3;
     grid-template-columns: repeat(2, auto);
     place-items: center;
-    margin-top: 0.5em;
+    margin-top: 1.2em;
     & > button {
       border-radius: 100%;
       width: clamp(12em, 18vw, 22em);
@@ -260,4 +233,31 @@ export default {
     }
   }
 }
+
+#resume-consuptiom {
+    margin-top: 1em;
+    display: flex;
+    grid-row: 3/4;
+    flex-direction: row;
+    align-items: center;
+    justify-items: center;
+    text-align: center;
+    gap: 0.5em;
+    #detailsElem {
+      flex: 1;
+      background-color: #95cafe;
+
+      padding: 1em 0em;
+      border-radius: 5px;
+      p {
+        font-size: clamp(0.8em, 2vw, 2em);
+      }
+      &:nth-child(1) {
+        margin-left: 0.5em;
+      }
+      &:nth-child(2) {
+        margin-right: 0.5em;
+      }
+    }
+  }
 </style>

@@ -10,19 +10,21 @@
         </td>
         <td>
           <div id="details-device">
-            <p id="stateDevice">{{ device.name }}</p>
-            <p id="hourDevice">
+            <h3>{{ device.name }}</h3>
+            <!-- <p id="stateDevice">{{ device.name }}</p> -->
+            <p id="stateDevice" style="color:#0d74dc">
               <strong>{{ device.state }}</strong>
             </p>
-            <p id="hourDevice">{{ device.time }}</p>
-            <p id="hourDevice">{{ device.consumption }}</p>
+            <p id="hourDevice"><strong>From: </strong>{{ device.starting_time }}</p>
+            <p id="hourDevice"><strong>To: </strong>{{ device.ending_time }}</p>
+            <p id="hourDevice"><strong>Power: </strong>{{ device.consumption }}</p>
             <button style="background-color: #95cafe" @click="graphConsumption(device.name)">See consumption</button>
           </div>
         </td>
       </tr>
       <tr id="addElement">
         <td><button @click="changeModal" id="addButtonDevice">+</button></td>
-        <td><p for="addButtonDevice">New device schedule</p></td>
+        <td><p for="addButtonDevice">Change schedule</p></td>
       </tr>
     </table>
 
@@ -115,6 +117,7 @@ export default {
             justify-content: center;
             border-radius: 100%;
             background-color: #95cafe;
+            //background-color: #0d74dc;
             width: clamp(6em, 14vw, 16em);
             height: clamp(6em, 14vw, 16em);
           }

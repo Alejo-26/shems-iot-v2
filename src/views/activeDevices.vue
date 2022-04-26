@@ -48,11 +48,11 @@ export default {
     };
   },
   async mounted() {
-    let url = process.env.VUE_APP_API_URL + "listDevices";
+    let url = process.env.VUE_APP_API_URL + "home";
     await axios
       .get(url)
       .then((response) => {
-        this.listDevices = response.data;
+        this.listDevices = response.data.listDevices;
       })
       .catch((err) => {
         switch (err.response.status) {

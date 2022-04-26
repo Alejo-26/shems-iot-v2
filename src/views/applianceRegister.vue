@@ -19,7 +19,7 @@
               value="delete"
               type="submit"
               style="background-color: #95cafe"
-              @click="deleteData(device.id)"
+              @click="deleteData(device.name)"
             />
           </div>
         </td>
@@ -52,7 +52,7 @@ export default {
     };
   },
   async mounted() {
-    let url = process.env.VUE_APP_API_URL + "appliances-registered";
+    let url = process.env.VUE_APP_API_URL + "settings";
     await axios
       .get(url)
       .then((response) => {
@@ -86,16 +86,16 @@ export default {
 
     async updateList(){
       try{
-        const res = await axios.get(process.env.VUE_APP_API_URL + "appliances-registered")
+        const res = await axios.get(process.env.VUE_APP_API_URL + "settings")
         this.listDevices = res.data;
       }catch(e){
         console.error(e)
       }
     },
-    async deleteData(_id) {
+    async deleteData(nameAppli2) {
       try {
-        console.log(_id)
-        const res = await axios.delete(process.env.VUE_APP_API_URL + "appliances-registered/"+ _id);
+        console.log(nameAppli2)
+        const res = await axios.delete(process.env.VUE_APP_API_URL + "settings/"+ nameAppli2);
         console.log(res)
         alert("device deleted");
         this.updateList()

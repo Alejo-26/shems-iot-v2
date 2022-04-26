@@ -106,10 +106,12 @@ export default {
     async updateData(){
       try{
         this.fillInformation()
+        
         const res = await axios.put(process.env.VUE_APP_API_URL + "scheduling/" + this.newSchedule.id, this.newSchedule)
+        console.log(res)
         console.log(this.newSchedule)
         alert("Appliance registered succesfully")
-        console.log(res)
+        
       }catch (e){
         console.error(e)
       }

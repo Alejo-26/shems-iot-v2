@@ -4,7 +4,7 @@
       <SvgImage nameImage="welcome-home" width="100px" height="auto" />
       <p id="letter-icon">SHEMS</p>
     </div>
-    <h2>Registration</h2>
+    <h2>Settings</h2>
     <div id="username" class="input-text">
       <p>Family name</p>
       <input type="text" v-model="newRegistration.userName2" />
@@ -14,20 +14,46 @@
     <div id="Comfort">
       <h2><strong>Comfort Parameters</strong></h2>
       <div id="temMax" class="input-text">
-        <p>Maximum temperature of comfort</p>
-        <input type="number" v-model="newRegistration.temMax2" />
+        <p>Maximum interior temperature </p>
+        <input type="number" v-model="newRegistration.Tin_max" />
       </div>
       <div id="temMin" class="input-text">
-        <p>Minimum temperature of comfort</p>
-        <input type="number" v-model="newRegistration.temMin2" />
+        <p>Minimum interior temperature </p>
+        <input type="number" v-model="newRegistration.Tin_min" />
       </div>
       <div id="temMaxEnvi" class="input-text">
-        <p>Maximum temperature of the enviroment</p>
-        <input type="number" v-model="newRegistration.temMaxEnvi2" />
+        <p>Maximum temperature of the water</p>
+        <input type="number" v-model="newRegistration.Tewh_max" />
       </div>
       <div id="temMinEnvi" class="input-text">
-        <p>Minimum temperature of the enviroment</p>
-        <input type="number" v-model="newRegistration.temMinEnvi2" />
+        <p>Minimum temperature of the water</p>
+        <input type="number" v-model="newRegistration.Tewh_min" />
+      </div>
+    </div>
+    <div id="Comfort">
+      <h2><strong>Energy storage system</strong></h2>
+      <div id="temMax" class="input-text">
+        <p>Maximum level of the batteries </p>
+        <input type="number" v-model="newRegistration.Cess_thresh_high" />
+      </div>
+      <div id="temMin" class="input-text">
+        <p>Minimum level of the batteries </p>
+        <input type="number" v-model="newRegistration.Cess_thresh_low" />
+      </div>
+    </div>
+    <div id="Comfort">
+      <h2><strong>Electric vehicle</strong></h2>
+      <div id="temMax" class="input-text">
+        <p>Maximum level </p>
+        <input type="number" v-model="newRegistration.Cpev_thresh_high" />
+      </div>
+      <div id="temMin" class="input-text">
+        <p>Minimum level </p>
+        <input type="number" v-model="newRegistration.Cpev_thresh_low" />
+      </div>
+      <div id="temMin" class="input-text">
+        <p>Usually time of arrival </p>
+        <input type="time" v-model="newRegistration.time_arrival" />
       </div>
     </div>
 
@@ -44,14 +70,35 @@
 import SvgImage from "../components/FileSvg.vue";
 import axios from "axios";
 export default {
+  async mounted() {
+    let url = process.env.VUE_APP_API_URL + "settingsoldParameters";
+    //let url = process.env.VUE_APP_API_URL + "settings/oldParameters";
+    await axios
+      .get(url)
+      .then((response) => {
+        this.newRegistration = response.data;
+      })
+      .catch((err) => {
+        switch (err.response.status) {
+          case 401:
+            console.log("error");
+            break;
+        }
+      });
+  },
   data() {
     return {
       newRegistration:{
         userName2: "Segafredo",
-        temMax2:"23",
-        temMin2:"45",
-        temMaxEnvi2:"28",
-        temMinEnvi2:"34",
+        Tin_max: "23",
+        Tin_min: "45",
+        Tewh_max: "28",
+        Tewh_min: "18",
+        Cess_thresh_low: "0.2",
+        Cess_thresh_high: "0.8",
+        Cpev_thresh_low: "0.2",
+        Cpev_thresh_high: "0.8",
+        time_arrival: ""
       }
       
     };
@@ -62,7 +109,8 @@ export default {
   methods:{
     async postData(){
       try{
-        const res = await axios.post(process.env.VUE_APP_API_URL + "oldParameters",this.newRegistration)
+        const res = await axios.post(process.env.VUE_APP_API_URL + "settingsoldParameters",this.newRegistration)
+        //const res = await axios.post(process.env.VUE_APP_API_URL + "settings/oldParameters",this.newRegistration)
         alert("Information saved succesfully")
       }catch (e){
         console.error(e)

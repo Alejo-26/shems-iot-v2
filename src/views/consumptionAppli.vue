@@ -6,11 +6,11 @@
       <bar-line v-if="loaded" :chartData="chartData2" :options="options" />
     </div>
 
-    <div v-if="title==='Diswasher'">
+    <div v-if="title==='Dishwasher'">
       <bar-line v-if="loaded" :chartData="chartData3" :options="options" />
     </div>
 
-    <div v-if="title==='Oven'">
+    <div v-if="title==='Electric vehicle'">
       <bar-line v-if="loaded" :chartData="chartData4" :options="options" />
     </div>
 
@@ -45,10 +45,11 @@ export default {
         labels: [],
         datasets: [
           {
-            label: "Appliance Consumption",
+            label: "Consumption in Watts",
             borderWidth: 1,
             fill: false,
             backgroundColor: '#95cafe',
+            borderColor: 'rgb(75, 192, 192)',
             pointBorderColor: "#2554FF",
             data: []
           },
@@ -58,7 +59,7 @@ export default {
         labels: [],
         datasets: [
           {
-            label: "Consumption in khW",
+            label: "Consumption in Watts",
             borderWidth: 1,
             fill: false,
             borderColor: 'rgb(75, 192, 192)',
@@ -71,7 +72,7 @@ export default {
         labels: [],
         datasets: [
           {
-            label: "Consumption in khW",
+            label: "Consumption in Watts",
             borderWidth: 1,
             fill: false,
             borderColor: 'rgb(75, 192, 192)',
@@ -84,7 +85,7 @@ export default {
         labels: [],
         datasets: [
           {
-            label: "Consumption in khW",
+            label: "Consumption in Watts",
             borderWidth: 1,
             fill: false,
             borderColor: 'rgb(75, 192, 192)',
@@ -135,9 +136,9 @@ export default {
         this.chartData2.datasets[0].data = response.data.dataWashingMachine
         this.chartData2.labels = response.data.labelsWashingMachine
         this.chartData3.datasets[0].data = response.data.dataDishwasher
-        this.chartData3.labels = response.data.labelsDiswasher
-        this.chartData4.datasets[0].data = response.data.dataOven
-        this.chartData4.labels = response.data.labelsOven
+        this.chartData3.labels = response.data.labelsDishwasher
+        this.chartData4.datasets[0].data = response.data.dataEV
+        this.chartData4.labels = response.data.labelsEV
         this.chartData5.datasets[0].data = response.data.dataDefault
         this.chartData5.labels = response.data.labelsDefault
 

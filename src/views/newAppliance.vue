@@ -9,28 +9,20 @@
       <label for="device">Select your appliance</label>
       <select id="device" v-model="selected">
         <option disabled value="">Please select one</option>
-        <option>Diswasher</option>
-        <option>Hair dryer</option>
-        <option>Humidifier</option>
-        <option>Oven</option>
-        <option>Rice cooker</option>
-        <option>Robot cleaner</option>
-        <option>Vacuum cleaner</option>
         <option>Washing machine</option>
+        <option>Diswasher</option>
+        <option>Vacuum cleaner</option>
         <option>Other</option>
       </select>
       <span>Selected: {{ selected }}</span>
 
       <div v-if="selected==='Other'">
-        <label for="nameAppli">Name of the appliance</label>
+        <label for="nameAppli">Type of the appliance</label>
         <input type="text" id="nameAppli"  v-model="newAppliance.name" />
         <label for="consumption">Consumption in W</label>
         <input type="text" id="consumption"  v-model="newAppliance.consumption" />
-      </div>
-      
-      <div>
-        <label for="details">Brand of the appliance</label>
-        <input type="text" id="details"  v-model="newAppliance.details" />
+        <label for="running_length">Normally working time in minutes</label>
+        <input type="number" id="running_lenght"  v-model="newAppliance.running_length" />
       </div>
       
 
@@ -61,9 +53,9 @@ export default {
       newAppliance:{
         id: 12,
         name:"",
-        imgSrc: "welcome-home",
-        details: "",
         consumption:"",
+        running_length:"",
+        imgSrc: "welcome-home",
       },
       errors: [],
       selected: '',
@@ -96,17 +88,14 @@ export default {
     fillInformation(){
       if (this.selected == "Washing machine"){this.newAppliance.name=this.selected,this.newAppliance.imgSrc="washingMachine",this.newAppliance.id=2}
       if (this.selected == "Diswasher"){this.newAppliance.name=this.selected,this.newAppliance.imgSrc="dishWasher",this.newAppliance.id=3}
-      if (this.selected == "Oven"){this.newAppliance.name=this.selected,this.newAppliance.imgSrc="oven",this.newAppliance.id=4}
-      if (this.selected == "Rice cooker"){this.newAppliance.name=this.selected,this.newAppliance.imgSrc="riceCooker",this.newAppliance.id=5}
-      if (this.selected == "Hair dryer"){this.newAppliance.name=this.selected,this.newAppliance.imgSrc="hairDryer",this.newAppliance.id=6}
-      if (this.selected == "Humidifier"){this.newAppliance.name=this.selected,this.newAppliance.imgSrc="humidifier",this.newAppliance.id=7}
-      if (this.selected == "Robot cleaner"){this.newAppliance.name=this.selected,this.newAppliance.imgSrc="robotCleaner",this.newAppliance.id=8}
-      if (this.selected == "Vacuum cleaner"){this.newAppliance.name=this.selected,this.newAppliance.imgSrc="vacuumCleaner",this.newAppliance.id=9}
+      if (this.selected == "Vacuum cleaner"){this.newAppliance.name=this.selected,this.newAppliance.imgSrc="vacuumCleaner",this.newAppliance.id=4}
+      if (this.selected == "Other"){this.newAppliance.name=this.selected,this.newAppliance.imgSrc="welcome-home"}
     },
     async saveData2(){
       try{
         this.fillInformation()
-        const res = await axios.post(process.env.VUE_APP_API_URL + "appliances-registered", this.newAppliance)
+        //const res = await axios.post(process.env.VUE_APP_API_URL + "appliances-registered", this.newAppliance)
+        const res = await axios.post(process.env.VUE_APP_API_URL + "settings", this.newAppliance)
         console.log(this.payload)
         alert("Appliance registered succesfully")
         console.log(res)

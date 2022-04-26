@@ -7,7 +7,7 @@ import EVRegister from "../views/EvalRegister.vue";
 import ComfortParameter from "../views/ComfortParameter.vue";
 import Scheduling from "../views/Scheduling.vue";
 import Summary from "../views/Summary.vue";
-import Dashboard from "../views/UserApp.vue";
+import SHEMS from "../views/UserApp.vue";
 import Home from "../views/HomePage.vue";
 import Community from "../views/Community.vue";
 import Settings from "../views/Settings.vue";
@@ -33,9 +33,9 @@ const routes = [
     meta: { requireAuth: false },
   },
   {
-    path: "/dashboard",
-    name: "Dashboard",
-    component: Dashboard,
+    path: "/SHEMS",
+    name: "SHEMS",
+    component: SHEMS,
     meta: { requireAuth: true },
     children: [
       {

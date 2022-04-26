@@ -1,7 +1,7 @@
 <template>
   <div class="container-app">
     <div id="indicator">
-      other logo
+      <!-- other logo -->
       <div class="logoIndicator">
         <Logo nameImage="welcome-home" width="36vw" />
         <p>SHEMS</p>
