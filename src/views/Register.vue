@@ -73,6 +73,7 @@ export default {
   async mounted() {
     let url = process.env.VUE_APP_API_URL + "settingsoldParameters";
     //let url = process.env.VUE_APP_API_URL + "settings/oldParameters";
+    //let url = process.env.VUE_APP_API_URL + "/SHEMS/settings/oldParameters";
     await axios
       .get(url)
       .then((response) => {
@@ -110,6 +111,7 @@ export default {
     async postData(){
       try{
         const res = await axios.post(process.env.VUE_APP_API_URL + "settingsoldParameters",this.newRegistration)
+        //const res = await axios.post(process.env.VUE_APP_API_URL + "settings",this.newRegistration)
         //const res = await axios.post(process.env.VUE_APP_API_URL + "settings/oldParameters",this.newRegistration)
         alert("Information saved succesfully")
       }catch (e){
