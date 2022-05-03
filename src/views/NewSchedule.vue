@@ -9,7 +9,7 @@
       <label for="device">Select your appliance</label>
       <select id="device" v-model="selected">
         <option disabled value="">Please select one</option>
-        <option v-for="(device,index) in listDevices" v-bind:key="index">{{device.name}}</option>
+        <option v-for="(device,index) in listDevices" v-bind:key="index">{{device}}</option>
 <!--         <option>Diswasher</option>
         <option>Hair dryer</option>
         <option>Humidifier</option>
@@ -22,9 +22,21 @@
       </select>
       <span>Selected: {{selected }}</span>
 
-
-      <label for="newTime2">New schedule time</label>
+      
+      <div style="border:1px solid black;margin-bottom:20px">
+        <label for="newTime2">Specific time</label>
+        <br>
+        <input type="time" id="newTime2" v-model="newTime2" />
+       <!--  <br>
+        <br>
+        <label for="newTime3">Actual time</label>
+        <br>
+        <input type="button"  value="Time now" style="margin-bottom:5px"/> -->
+      </div>
+<!--       <label for="newTime2">New schedule time</label>
       <input type="time" id="newTime2" v-model="newTime2" />
+
+      <input type="button" id="TimeNow" /> -->
 
       <spam id="errors-form" v-if="errors.length > 0">
         <ul>
@@ -34,7 +46,7 @@
         </ul>
       </spam>
       
-      <input type="button" value="Save" @click="updateData()"/>
+      <input type="button" value="Save" @click="updateData();getTime()"/>
 
       <input type="button" value="Back" @click="comeBack()"/>
     </form>
@@ -48,11 +60,11 @@ import axios from "axios";
 export default {
  
  async mounted() {
-    let url = process.env.VUE_APP_API_URL + "appliances-registered";
+    let url = process.env.VUE_APP_API_URL + "changeScheduling";
     await axios
       .get(url)
       .then((response) => {
-        this.listDevices = response.data;
+        this.listDevices = response.data.listDevices;
       })
       .catch((err) => {
         switch (err.response.status) {
@@ -71,6 +83,7 @@ export default {
       errors: [],
       newTime2:"",
       selected:"",
+      timeNow2:"",
       newSchedule:
       {
       id:"",
@@ -80,7 +93,11 @@ export default {
       state: "Putprove",
       time: "",
       consumption:"Putprove"
-    }
+      },
+      newSchedule2:{
+        which:"",
+        when:""
+      }
     
     };
   },
@@ -93,7 +110,7 @@ export default {
       //switch to the other layout
       this.$router.push({ name: "scheduling" });
     },
-    fillInformation(){
+/*     fillInformation(){
       if (this.selected == "Washing machine"){this.newSchedule.name=this.selected,this.newSchedule.imgSrc="washingMachine",this.newSchedule.time=this.newTime2,this.newSchedule.id=2}
       if (this.selected == "Diswasher"){this.newSchedule.name=this.selected,this.newSchedule.imgSrc="dishWasher",this.newSchedule.time=this.newTime2,this.newSchedule.id=3}
       if (this.selected == "Oven"){this.newSchedule.name=this.selected,this.newSchedule.imgSrc="oven",this.newSchedule.time=this.newTime2,this.newSchedule.id=4}
@@ -102,12 +119,18 @@ export default {
       if (this.selected == "Humidifier"){this.newSchedule.name=this.selected,this.newSchedule.imgSrc="humidifier",this.newSchedule.time=this.newTime2,this.newSchedule.id=7}
       if (this.selected == "Robot cleaner"){this.newSchedule.name=this.selected,this.newSchedule.imgSrc="robotCleaner",this.newSchedule.time=this.newTime2,this.newSchedule.id=8}
       if (this.selected == "Vacuum cleaner"){this.newSchedule.name=this.selected,this.newSchedule.imgSrc="vacuumCleaner",this.newSchedule.time=this.newTime2,this.newSchedule.id=9}
+    }, */
+    fillInformation2(){
+      this.newSchedule2.which = this.selected,
+      //this.newSchedule2.when = this.getTime()
+      this.newSchedule2.when = this.newTime2
     },
     async updateData(){
       try{
-        this.fillInformation()
+        this.fillInformation2()
         
-        const res = await axios.put(process.env.VUE_APP_API_URL + "scheduling/" + this.newSchedule.id, this.newSchedule)
+        //const res = await axios.put(process.env.VUE_APP_API_URL + "scheduling/" + this.newSchedule.id, this.newSchedule)
+        const res = await axios.put(process.env.VUE_APP_API_URL + "changeScheduling2" , this.newSchedule2)
         console.log(res)
         console.log(this.newSchedule)
         alert("Appliance registered succesfully")
@@ -131,7 +154,13 @@ export default {
         this.updateData();
       }
     },
-    
+    getTime(){
+      var timeNow = new Date().toISOString()
+      console.log(timeNow)
+      console.log(typeof timeNow)
+      //this.timeNow2 = timeNow
+      return timeNow
+    }
   },
   components: {
     ImageSVG,
@@ -168,11 +197,11 @@ export default {
       padding: 0.2em 0.2em;
       font-size: clamp(1.8em, 2.1vw, 2.2em);
     }
-    input[type="time"] {
+    /* input[type="time"] {
       border: 2px solid black;
       padding: 0.2em 0.2em;
       font-size: clamp(1.8em, 2.1vw, 2.2em);
-    }
+    } */
     input[type="submit"] {
       border: 2px solid black;
       padding: 0.2em 0.2em;

@@ -1,6 +1,6 @@
 {
   "user": {
-    "name": "Rossi "
+    "name": "eugenio"
   },
   "settingsoldParameters": {
     "userName2": "Segafredo",
@@ -53,10 +53,10 @@
     "single_values": {
       "ESS_bateery": "50%",
       "EV_battery": "40%",
-      "consumption": "2.5kV"
+      "consumption": "2.5kW"
     }
   },
-  "community": {
+  "communityplots": {
     "labelsWeek": [
       "Monday",
       "Tuesday",
@@ -107,7 +107,7 @@
     "dataWeek": [
       9.4,
       9.5,
-      9.0,
+      9,
       9.4,
       9.6,
       10.5,
@@ -345,5 +345,51 @@
       500,
       500
     ]
+  },
+  "changeScheduling": {
+    "listDevices": [
+      "Washing machine",
+      "Dishwasher",
+      "Vacuum cleaner"
+    ]
+  },
+  "changeScheduling2": {
+    "which": "Dishwasher",
+    "when": "19:18"
+  },
+  "communityprosumers": [
+    {
+      "id": 1,
+      "name": "Franceso",
+      "interactions": 1,
+      "tot_energy": 575,
+      "totp_price": 248412
+    },
+    {
+      "id": 2,
+      "name": "Sara",
+      "interactions": 1,
+      "tot_energy": 600,
+      "tot_price": 280000
+    },
+    {
+      "id": 3,
+      "name": "Luisa",
+      "interactions": 1,
+      "tot_energy": 625,
+      "tot_price": 293000
+    }
+  ],
+  "registration": {
+    "name": "Maya",
+    "Tin_max": "25",
+    "Tin_min": "25",
+    "Tewh_max": "27",
+    "Tewh_min": "27",
+    "Cess_thresh_high": "28",
+    "Cess_thresh_low": "28",
+    "Time_departure": "09:47",
+    "Cpev_thresh_high": "30",
+    "Cpev_thresh_low": "30"
   }
 }

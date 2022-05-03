@@ -3,32 +3,55 @@ import Vuex from "vuex";
 
 Vue.use(Vuex);
 
-export default new Vuex.Store({
+export const store = new Vuex.Store({
   state: {
-    isLogged: false,
-    listDevices: [],
+    name: "",
+    Tin_max: "",
+    Tin_min: "",
+    Tewh_max: "",
+    Tewh_min: "",
+    Cess_thresh_high: "",
+    Cess_thresh_low: "",
+    //Time_departure: "",
+    //Cpev_thresh_high: "",
+    //Cpev_thresh_low: ""
+    
   },
-  mutations: {
-    loggedUser(state) {
-      state.isLogged = true;
+  mutations:{
+    newName(state,familyName){
+      state.name = familyName
     },
-    logoutUser(state) {
-      state.isLogged = false;
+    newTin_max(state,valueA){
+      state.Tin_max = valueA
     },
-    saveListDevices(state, { listDevices }) {
-      state.listDevices = listDevices;
+    newTin_min(state,valueB){
+      state.Tin_min = valueB
     },
+    newTewh_max(state,valueC){
+      state.Tewh_max = valueC
+    },
+    newTewh_min(state,valueD){
+      state.Tewh_min = valueD
+    },
+    newCess_thresh_high(state,valueE){
+      state.Cess_thresh_high = valueE
+    },
+    newCess_thresh_low(state,valueF){
+      state.Cess_thresh_low = valueF
+    }
   },
-  actions: {
-    loggedUserAction(context) {
-      context.commit("loggedUser");
-    },
-    logoutUserAction(context) {
-      context.commit("logoutUser");
-    },
-    saveDevicesAction({ commit }, listDevices) {
-      commit("saveListDevices", listDevices);
-    },
-  },
-  modules: {},
+
 });
+
+/* registration:{
+  name: "",
+  Tin_max: "",
+  Tin_min: "",
+  Tewh_max: "",
+  Tewh_min: "",
+  Cess_thresh_low: "",
+  Cess_thresh_high: "",
+  Cpev_thresh_low: "",
+  Cpev_thresh_high: "",
+  time_arrival: ""
+} */

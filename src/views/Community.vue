@@ -32,7 +32,8 @@ export default {
   
   async mounted() {
     //Consulta los datos para graficar;
-    let url = process.env.VUE_APP_API_URL + "community";
+    let url = process.env.VUE_APP_API_URL + "communityplots";
+    //let url = process.env.VUE_APP_API_URL + "community/plots";
     await axios
       .get(url)
       .then((response) => {

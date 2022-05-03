@@ -24,7 +24,7 @@
     <div style="margin:30px">
       <div id="detailsElem" style="background-color: #95cafe;text-align: center">
         <h2>{{ this.single_values2.consumption }}</h2>
-        <p>Consumption today</p>
+        <p>Actual consumption</p>
       </div>
       <br>
       <div id="detailsElem" style="background-color: #95cafe;text-align: center">
