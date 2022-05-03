@@ -391,5 +391,45 @@
     "Time_departure": "11:08",
     "Cpev_thresh_high": "60",
     "Cpev_thresh_low": "30"
+  },
+  "summary2": {
+    "labels": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday"
+    ],
+    "data": [
+      9.4,
+      9.5,
+      9,
+      9.4,
+      9.6,
+      10.5,
+      11.5
+    ]
+  },
+  "plots": {
+    "labels": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday"
+    ],
+    "data": [
+      9.4,
+      9.5,
+      9,
+      9.4,
+      9.6,
+      10.5,
+      11.5
+    ]
   }
 }

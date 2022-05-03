@@ -22,6 +22,8 @@ import Registration2 from "../views/Registration2.vue";
 import ComfortParameter2 from "../views/ComfortParameter2.vue";
 import StorageSystem from '../views/StorageSystem.vue'
 import EVregistration from "../views/EVregistration.vue";
+import Summary2 from "../views/Summary2.vue";
+import CommunityProsumers2 from "../views/CommunityProsumers2.vue";
 
 Vue.use(VueRouter);
 
@@ -118,6 +120,12 @@ const routes = [
         meta: { requireAuth: true },
       },
       {
+        path: "summary2",
+        name: "summary2",
+        component: Summary2,
+        meta: { requireAuth: true },
+      },
+      {
         path: "home-resume",
         name: "home",
         component: Home,
@@ -163,6 +171,12 @@ const routes = [
         path: "community-prosumers",
         name: "CommunityProsumers",
         component: CommunityProsumers,
+        meta: { requireAuth: true },
+      },
+      {
+        path: "community-prosumers2",
+        name: "CommunityProsumers2",
+        component: CommunityProsumers2,
         meta: { requireAuth: true },
       }
     ],

@@ -42,8 +42,8 @@ export default {
             this.$router.push({ name: "scheduling" });
           break;
         case "Summary":
-          if (this.$router.currentRoute.name != "summary")
-            this.$router.push({ name: "summary" });
+          if (this.$router.currentRoute.name != "summary2")
+            this.$router.push({ name: "summary2" });
           break;
         /* case "Community":
           if (this.$router.currentRoute.name != "community")
@@ -51,8 +51,8 @@ export default {
           break; */
 
         case "Community":
-          if (this.$router.currentRoute.name != "CommunityProsumers")
-            this.$router.push({ name: "CommunityProsumers" });
+          if (this.$router.currentRoute.name != "CommunityProsumers2")
+            this.$router.push({ name: "CommunityProsumers2" });
           break;
           
         case "Settings":

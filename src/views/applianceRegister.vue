@@ -33,7 +33,7 @@
 
     <div class="modal-select" v-if="modalIsOpen">
       <div id="containt-data">
-        <button @click="registerData('ev')">EV registration</button>
+        <!-- <button @click="registerData('ev')">EV registration</button> -->
         <button @click="registerData('appliance')">New appliance</button>
         <button @click="changeModal">Cancel</button>
       </div>
