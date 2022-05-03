@@ -381,15 +381,15 @@
     }
   ],
   "registration": {
-    "name": "Maya",
-    "Tin_max": "25",
-    "Tin_min": "25",
-    "Tewh_max": "27",
-    "Tewh_min": "27",
-    "Cess_thresh_high": "28",
-    "Cess_thresh_low": "28",
-    "Time_departure": "09:47",
-    "Cpev_thresh_high": "30",
+    "name": "Acosta",
+    "Tin_max": "2",
+    "Tin_min": "1",
+    "Tewh_max": "4",
+    "Tewh_min": "3",
+    "Cess_thresh_high": "5",
+    "Cess_thresh_low": "6",
+    "Time_departure": "11:08",
+    "Cpev_thresh_high": "60",
     "Cpev_thresh_low": "30"
   }
 }

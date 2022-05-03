@@ -176,7 +176,7 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  if (to.name == "Login" || to.name == "Register") {
+  if (to.name == "Registration" || to.name == "comfortParameters2" || to.name == "StorageSystem" || to.name == "EVregistration")   {
     if (localStorage.getItem("auth") == "true") {
       next({ name: "home" });
     } else {
