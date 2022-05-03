@@ -43,7 +43,7 @@ export default {
       maxBaterry:"",
 
       errors: [],
-      payload:{
+      payload2:{
         name: "",
         Tin_max: "",
         Tin_min: "",
@@ -55,7 +55,41 @@ export default {
         Cpev_thresh_high: "",
         Cpev_thresh_low: ""
         
+      },
+    payload: {
+    family_name:{
+      family_name: "Federico"
+    },
+    EV:{
+      Time_departure: "08:15",
+      Cpev_thresh_high: "70",
+      Cpev_thresh_low: "30"
+    },
+    setpoints:{
+      Tin_max: "25",
+      Tin_min: "18",
+      Tewh_max: "30",
+      Tewh_min: "21"
+
+    },
+    home_batteries:{
+      Cess_thresh_high: "30",
+      Cess_thresh_low: "40"
+    },
+    applianceData:[
+      {
+        name:"washing_machine"
+      },
+      {
+        name:"diswasher"
+      },
+      {
+        name:"vacuum_cleaner"
       }
+    ]
+    
+  },
+
     };
   },
   methods: {
@@ -64,16 +98,16 @@ export default {
       this.$router.push({ path: "storage-system" });;
     },
     fillData(){
-      this.payload.name=this.$store.state.name
-      this.payload.Tin_max=this.$store.state.Tin_max
-      this.payload.Tin_min=this.$store.state.Tin_min
-      this.payload.Tewh_max=this.$store.state.Tewh_max
-      this.payload.Tewh_min=this.$store.state.Tewh_min
-      this.payload.Cess_thresh_high=this.$store.state.Cess_thresh_high
-      this.payload.Cess_thresh_low=this.$store.state.Cess_thresh_low
-      this.payload.Time_departure=this.departureTime
-      this.payload.Cpev_thresh_high=this.maxBaterry
-      this.payload.Cpev_thresh_low=this.minBaterry
+      this.payload.family_name.name=this.$store.state.name
+      this.payload.setpoints.Tin_max=this.$store.state.Tin_max
+      this.payload.setpoints.Tin_min=this.$store.state.Tin_min
+      this.payload.setpoints.Tewh_max=this.$store.state.Tewh_max
+      this.payload.setpoints.Tewh_min=this.$store.state.Tewh_min
+      this.payload.home_batteries.Cess_thresh_high=this.$store.state.Cess_thresh_high
+      this.payload.home_batteries.Cess_thresh_low=this.$store.state.Cess_thresh_low
+      this.payload.EV.Time_departure=this.departureTime
+      this.payload.EV.Cpev_thresh_high=this.maxBaterry
+      this.payload.EV.Cpev_thresh_low=this.minBaterry
 
     },
 
@@ -83,7 +117,7 @@ export default {
         //const res = await axios.post(process.env.VUE_APP_API_URL + "appliances-registered", this.newAppliance)
         //this.fillData();
         //const res = await axios.post(process.env.VUE_APP_API_URL + "user", {name:this.$store.state.name})
-        const res = await axios.post(process.env.VUE_APP_API_URL + "registration",this.payload);
+        const res = await axios.post(process.env.VUE_APP_API_URL + "registration2",this.payload);
         alert("Information registered succesfully");
         console.log(res);
         localStorage.setItem("auth", true);

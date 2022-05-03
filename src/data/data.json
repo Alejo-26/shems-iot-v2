@@ -266,7 +266,7 @@
     }
   ],
   "graphSelected": {
-    "nameDevice": "Dishwasher"
+    "nameDevice": "Electric vehicle"
   },
   "consumption-appli": {
     "labelsWashingMachine": [
@@ -381,16 +381,48 @@
     }
   ],
   "registration": {
-    "name": "Acosta",
-    "Tin_max": "2",
-    "Tin_min": "1",
-    "Tewh_max": "4",
-    "Tewh_min": "3",
-    "Cess_thresh_high": "5",
-    "Cess_thresh_low": "6",
-    "Time_departure": "11:08",
-    "Cpev_thresh_high": "60",
+    "name": "Federico",
+    "Tin_max": "25",
+    "Tin_min": "18",
+    "Tewh_max": "30",
+    "Tewh_min": "21",
+    "Cess_thresh_high": "30",
+    "Cess_thresh_low": "40",
+    "Time_departure": "08:15",
+    "Cpev_thresh_high": "70",
     "Cpev_thresh_low": "30"
+  },
+  "registration2": {
+    "family_name": {
+      "family_name": "Federico",
+      "name": "Acosta"
+    },
+    "EV": {
+      "Time_departure": "09:50",
+      "Cpev_thresh_high": "70",
+      "Cpev_thresh_low": "30"
+    },
+    "setpoints": {
+      "Tin_max": "23",
+      "Tin_min": "23",
+      "Tewh_max": "3",
+      "Tewh_min": "232"
+    },
+    "home_batteries": {
+      "Cess_thresh_high": "55",
+      "Cess_thresh_low": "5"
+    },
+    "applianceData": [
+      {
+        "name": "washing_machine"
+      },
+      {
+        "name": "diswasher"
+      },
+      {
+        "name": "vacuum_cleaner"
+      }
+    ]
   },
   "summary2": {
     "labels": [
