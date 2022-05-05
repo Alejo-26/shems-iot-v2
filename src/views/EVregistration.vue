@@ -25,14 +25,17 @@
         </ul>
       </spam>
       <input type="submit" value="Back" @click="comeBack()"/>
-      <input type="button" value="Finish" @click="saveData()"/> 
+      <input type="button" value="Skip the car" @click="SkipCar()"/> 
+      <input type="submit" value="Save and Next"  @click="Next()"/>
+      
+
     </form>
   </div>
 </template>
 
 <script>
 import ImageSVG from "../components/FileSvg.vue";
-import axios from "axios";
+//import axios from "axios";
 export default {
   data() {
     return {
@@ -93,11 +96,21 @@ export default {
     };
   },
   methods: {
-    async comeBack() {
+    comeBack() {
       //switch to the other layout
       this.$router.push({ path: "storage-system" });;
     },
-    fillData(){
+    SkipCar() {
+        this.$router.push({ path: "initial-appliance-registration" });
+    },
+    Next() {
+        this.$store.commit('newTime_departure',this.departureTime)
+        this.$store.commit('newCpev_thresh_high',this.maxBaterry)
+        this.$store.commit('newCpev_thresh_low',this.minBaterry)
+        this.$router.push({ path: "initial-appliance-registration" });
+    },
+
+/*     fillData(){
       this.payload.family_name.name=this.$store.state.name
       this.payload.setpoints.Tin_max=this.$store.state.Tin_max
       this.payload.setpoints.Tin_min=this.$store.state.Tin_min
@@ -109,15 +122,15 @@ export default {
       this.payload.EV.Cpev_thresh_high=this.maxBaterry
       this.payload.EV.Cpev_thresh_low=this.minBaterry
 
-    },
+    }, */
 
-    async saveData() {
+/*     async saveData() {
       this.fillData()
       try {
         //const res = await axios.post(process.env.VUE_APP_API_URL + "appliances-registered", this.newAppliance)
         //this.fillData();
         //const res = await axios.post(process.env.VUE_APP_API_URL + "user", {name:this.$store.state.name})
-        const res = await axios.post(process.env.VUE_APP_API_URL + "registration2",this.payload);
+        const res = await axios.post(process.env.VUE_APP_API_URL + "registration",this.payload);
         alert("Information registered succesfully");
         console.log(res);
         localStorage.setItem("auth", true);
@@ -125,7 +138,7 @@ export default {
       } catch (e) {
         console.error(e);
       }
-    },
+    }, */
     checkForm(e) {
       this.errors = [];
       e.preventDefault();

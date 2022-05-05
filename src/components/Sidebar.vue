@@ -56,8 +56,8 @@ export default {
           break;
           
         case "Settings":
-          if (this.$router.currentRoute.name != "register")
-            this.$router.push({ name: "register" });
+          if (this.$router.currentRoute.name != "settings")
+            this.$router.push({ name: "settings" });
           break;
 
         default:

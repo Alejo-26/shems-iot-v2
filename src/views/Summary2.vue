@@ -22,17 +22,17 @@
 
     <div style="margin:30px">
       <div id="detailsElem" style="background-color: #95cafe;text-align: center">
-        <h2>9.6 kWh</h2>
+        <h2>{{this.mean}} kWh</h2>
         <p>Mean consumption</p>
       </div>
       <br>
       <div id="detailsElem" style="background-color: #95cafe;text-align: center">
-        <h2>11.5 kWh</h2>
+        <h2>{{this.max}} kWh</h2>
         <p>Maximum consumption</p>
       </div>
       <br>
       <div id="detailsElem" style="background-color: #95cafe;text-align: center">
-        <h2>9.5 kWh</h2>
+        <h2>{{this.min}} kWh</h2>
         <p>Minimum consumption</p>
       </div>
     </div>
@@ -50,7 +50,7 @@ export default {
   
   async mounted() {
     //Consulta los datos para graficar;
-    let url = process.env.VUE_APP_API_URL + "summary2";
+    let url = process.env.VUE_APP_API_URL + "summary";
     await axios
       //.get(url)
       .get(url,{params:{period:'day',object:'consumption'}})
@@ -58,6 +58,9 @@ export default {
         console.log(response.data)
         this.chartData.datasets[0].data = response.data.data
         this.chartData.labels = response.data.labels
+        this.mean = response.data.mean
+        this.max = response.data.max
+        this.min = response.data.min
         
 
         this.loaded=true
@@ -78,6 +81,9 @@ export default {
       object:"consumption",
       loaded:false,
       loaded2:false,
+      mean:"",
+      max:"",
+      min:"",
       chartData: {
         labels: [],
         datasets: [

@@ -11,8 +11,10 @@
           <div class="details-devices" style="background-color: #95cafe;padding:10px">
             <p><strong>Name: </strong>{{ device.name }}</p>
             <p><strong>Interactions: </strong>{{ device.interactions }}</p>
-            <p><strong>Total energy sold: </strong>{{ device.tot_energy }}</p>
-            <p><strong>Average price: </strong>{{ device.price_energy }}</p>
+            <p><strong>Total energy sold: </strong>{{ device.tot_energy_sold }}</p>
+            <p><strong>Total energy bought: </strong>{{ device.tot_energy_bought }}</p>
+            <p><strong>Mean price sold: </strong>{{ device.mean_price_sold }}</p>
+            <p><strong>Mean price bought: </strong>{{ device.mean_price_bought }}</p>
 <!--             <p><strong>From: </strong>{{ device.starting_time}}</p>
             <p><strong>To: </strong>{{ device.ending_time}}</p> -->
           </div>

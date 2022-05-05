@@ -51,15 +51,22 @@ export default {
     return {
     
       newAppliance:{
-        id: 12,
+        action:"addAppliances",
         name:"",
         consumption:"",
         running_length:"",
-        imgSrc: "welcome-home",
       },
       errors: [],
       selected: '',
+      payload:{
+        action:"addAppliances",
+        name:"",
+        consumption:"",
+        running_len:"",
+        imgSrc: "welcome-home",
+      }
     };
+
   },
   methods: {
     async comeBack() {
@@ -86,16 +93,23 @@ export default {
       }
     },
     fillInformation(){
-      if (this.selected == "Washing machine"){this.newAppliance.name=this.selected,this.newAppliance.imgSrc="washingMachine",this.newAppliance.id=2}
-      if (this.selected == "Diswasher"){this.newAppliance.name=this.selected,this.newAppliance.imgSrc="dishWasher",this.newAppliance.id=3}
-      if (this.selected == "Vacuum cleaner"){this.newAppliance.name=this.selected,this.newAppliance.imgSrc="vacuumCleaner",this.newAppliance.id=4}
-      if (this.selected == "Other"){this.newAppliance.name=this.selected,this.newAppliance.imgSrc="welcome-home"}
+      if (this.selected == "Washing machine"){this.newAppliance.name=this.selected,this.newAppliance.action="addAppliances"}
+      if (this.selected == "Diswasher"){this.newAppliance.name=this.selected,this.newAppliance.action="addAppliances"}
+      if (this.selected == "Vacuum cleaner"){this.newAppliance.name=this.selected,this.newAppliance.action="addAppliances"}
+      if (this.selected == "Other"){this.newAppliance.action="addAppliances"}
+    },
+    reset(){
+      this.newAppliance.name="",
+      this.newAppliance.consumption="",
+      this.newAppliance.running_length=""
+
     },
     async saveData2(){
       try{
         this.fillInformation()
         //const res = await axios.post(process.env.VUE_APP_API_URL + "appliances-registered", this.newAppliance)
         const res = await axios.post(process.env.VUE_APP_API_URL + "settings", this.newAppliance)
+        this.reset()
         console.log(this.payload)
         alert("Appliance registered succesfully")
         console.log(res)

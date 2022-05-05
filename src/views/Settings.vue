@@ -1,55 +1,83 @@
 <template>
-  <div id="container-registerDevices">
-    <h2>Register your home appliances</h2>
-    <table class="list-devices">
-      <tr
-        id="deviceElement"
-        v-for="(device, index) in listDevices"
-        :key="index"
-      >
-        <td>
-          <button><FileImage :nameImage="device.imgSrc" width="40vw" /></button>
-        </td>
-        <td>
-          <div class="details-devices">
-            <p>{{ device.name }}</p>
-            <p>{{ device.details }}</p>
-          </div>
-        </td>
-      </tr>
+  <div class="container">
+    <div class="icon-image">
+      <SvgImage nameImage="welcome-home" width="100px" height="auto" />
+      <p id="letter-icon">SHEMS</p>
+    </div>
+    <h2>Settings</h2>
+    <div id="username" class="input-text">
+      <p>Family name</p>
+      <input type="text" v-model="newRegistration.userName2" />
+    </div>
 
-      <tr id="addElement">
-        <td><button @click="changeModal" id="addButtonDevice">+</button></td>
-        <td><p for="addButtonDevice">Add a new appliance</p></td>
-      </tr>
-    </table>
-
-    <div class="modal-select" v-if="modalIsOpen">
-      <div id="containt-data">
-        <button @click="registerData('ev')">EV registration</button>
-        <button @click="registerData('comfort')">Comfort Parameter</button>
-        <button @click="changeModal">Cancel</button>
+    
+    <div id="Comfort">
+      <h2><strong>Comfort Parameters</strong></h2>
+      <div id="temMax" class="input-text">
+        <p>Maximum interior temperature </p>
+        <input type="number" v-model="newRegistration.Tin_max" />
       </div>
+      <div id="temMin" class="input-text">
+        <p>Minimum interior temperature </p>
+        <input type="number" v-model="newRegistration.Tin_min" />
+      </div>
+      <div id="temMaxEnvi" class="input-text">
+        <p>Maximum temperature of the water</p>
+        <input type="number" v-model="newRegistration.Tewh_max" />
+      </div>
+      <div id="temMinEnvi" class="input-text">
+        <p>Minimum temperature of the water</p>
+        <input type="number" v-model="newRegistration.Tewh_min" />
+      </div>
+    </div>
+    <div id="Comfort">
+      <h2><strong>Energy storage system</strong></h2>
+      <div id="temMax" class="input-text">
+        <p>Maximum level of the batteries </p>
+        <input type="number" v-model="newRegistration.Cess_thresh_high" />
+      </div>
+      <div id="temMin" class="input-text">
+        <p>Minimum level of the batteries </p>
+        <input type="number" v-model="newRegistration.Cess_thresh_low" />
+      </div>
+    </div>
+    <div id="Comfort">
+      <h2><strong>Electric vehicle</strong></h2>
+      <div id="temMax" class="input-text">
+        <p>Maximum level </p>
+        <input type="number" v-model="newRegistration.Cpev_thresh_high" />
+      </div>
+      <div id="temMin" class="input-text">
+        <p>Minimum level </p>
+        <input type="number" v-model="newRegistration.Cpev_thresh_low" />
+      </div>
+      <div id="temMin" class="input-text">
+        <p>Usually time of arrival </p>
+        <input type="time" v-model="newRegistration.time_arrival" />
+      </div>
+    </div>
+
+
+    <div id="registerButoon" class="input-text">
+      <input  value="Register" type="submit" @click="postData()"/>
+      <input  value="Next" type="submit" @click="nextData()"/>
     </div>
   </div>
 </template>
 
 <script>
-import FileImage from "../components/FileSvg.vue";
+/* eslint-disable */
+import SvgImage from "../components/FileSvg.vue";
 import axios from "axios";
 export default {
-  data() {
-    return {
-      listDevices: [],
-      modalIsOpen: false,
-    };
-  },
   async mounted() {
-    let url = process.env.VUE_APP_API_URL + "listDevices";
+    let url = process.env.VUE_APP_API_URL + "settingsoldParameters";
+    //let url = process.env.VUE_APP_API_URL + "settings/oldParameters";
+    //let url = process.env.VUE_APP_API_URL + "/SHEMS/settings/oldParameters";
     await axios
       .get(url)
       .then((response) => {
-        this.listDevices = response.data;
+        this.newRegistration = response.data;
       })
       .catch((err) => {
         switch (err.response.status) {
@@ -59,119 +87,91 @@ export default {
         }
       });
   },
-  methods: {
-    changeModal() {
-      this.modalIsOpen = !this.modalIsOpen;
-    },
-
-    registerData(type) {
-      switch (type) {
-        case "ev":
-          this.$router.push({ name: "evregistration" });
-          return;
-        case "comfort":
-          this.$router.push({ name: "comfortParameters" });
-          return;
-        default:
-          return;
+  data() {
+    return {
+      newRegistration:{
+        action:"changeSetpoints",
+        userName2: "Segafredo",
+        Tin_max: "23",
+        Tin_min: "45",
+        Tewh_max: "28",
+        Tewh_min: "18",
+        Cess_thresh_low: "0.2",
+        Cess_thresh_high: "0.8",
+        Cpev_thresh_low: "0.2",
+        Cpev_thresh_high: "0.8",
+        time_arrival: "",
       }
-    },
+      
+    };
   },
   components: {
-    FileImage,
+    SvgImage,
   },
+  methods:{
+    async postData(){
+      try{
+        this.newRegistration.action="changeSetpoints"
+        const res = await axios.post(process.env.VUE_APP_API_URL + "settings",this.newRegistration)
+        //const res = await axios.post(process.env.VUE_APP_API_URL + "settings",this.newRegistration)
+        //const res = await axios.post(process.env.VUE_APP_API_URL + "settings/oldParameters",this.newRegistration)
+        alert("Information saved succesfully")
+      }catch (e){
+        console.error(e)
+      }
+    },
+    async nextData() {
+      //save the data with axios
+      console.log("Data saved");
+      //switch to the other layout
+      this.$router.push({ name: "applianceRegister" });
+    },
+  }
 };
 </script>
 
 <style lang="scss" scoped>
-#container-registerDevices {
-  position: relative;
-  height: 100%;
-  h2 {
-    margin-left: 1em;
-  }
-  table.list-devices {
-    margin-top: 2em;
-
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  width: 100%;
+  text-align: center;
+  .icon-image {
     text-align: center;
-    width: 100%;
-    border-collapse: none;
-    border-spacing: 2em 1em;
-    tr#deviceElement {
-      td {
-        &:nth-child(1) {
-          button {
-            border: none;
-            background-color: #95cafe;
-            border-radius: 100%;
-            width: 20vw;
-            height: 20vw;
-          }
-        }
-        &:nth-child(2) {
-          .details-devices {
-            p {
-              &:nth-child(1) {
-                font-weight: bold;
-                font-size: clamp(1.2em, 1.6vw, 2em);
-              }
-              &:nth-child(2) {
-                font-size: clamp(1em, 1.3vw, 1.6em);
-                color: #b8b7ba;
-              }
-            }
-          }
-        }
-      }
-    }
-    tr#addElement {
-      td {
-        &:nth-child(1) {
-          button {
-            background-color: #95cafe;
-            border-radius: 100%;
-            width: 20vw;
-            height: 20vw;
-            border: none;
-            font-size: clamp(2.5em, 3vw, 4em);
-            font-weight: bold;
-          }
-        }
-        &:nth-child(2) {
-          font-size: clamp(1.2em, 1.8vw, 2em);
-          font-weight: bold;
-        }
-      }
+
+    #letter-icon {
+      font-size: 1.4em;
+      font-weight: bold;
+      letter-spacing: 5px;
+      color: #5eaffb;
     }
   }
-  .modal-select {
-    display: grid;
-    position: absolute;
-    width: 100%;
-    height: 100vh;
-    place-items: center;
-    top: 0;
-    left: 0;
-    background-color: rgba(0, 0, 0, 0.2);
-    #containt-data {
+  h2 {
+    padding: 1em 0em;
+  }
+  .input-text {
+    display: flex;
+    flex-direction: column;
+    padding: 1em 2em;
+    p {
+      align-self: start;
+      font-weight: bold;
+    }
+    input[type="text"],
+    input[type="password"] {
+      padding: 0.5em 0.5em;
+      font-size: clamp(0.8em, 2vw, 4em);
+    }
+    input[type="submit"] {
+      width: 30vw;
+      margin: 0 auto;
+      font-size: clamp(0.8em, 2vw, 6em);
+      padding: 0.5em;
       border: 2px solid black;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 1em;
-      width: 80%;
-      height: 50%;
-      background-color: white;
-      border-radius: 10px;
-      padding: 1em;
-
-      button {
-        border: none;
-        font-size: clamp(1.8em, 2.2vw, 2.5em);
-        padding: 1em;
-        border-radius: 5px;
-        background-color: #95cafe;
-      }
+      border-radius: 7px;
+      font-weight: bold;
+      background-color: #94cafe;
     }
   }
 }

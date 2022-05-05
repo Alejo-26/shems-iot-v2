@@ -1,7 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 //import Login from "../views/Login.vue";
-import Register from "../views/Register.vue";
+import Settings from "../views/Settings.vue";
 import ListDevices from "../views/ListDevices.vue";
 import EVRegister from "../views/EvalRegister.vue";
 import ComfortParameter from "../views/ComfortParameter.vue";
@@ -10,7 +10,7 @@ import Summary from "../views/Summary.vue";
 import Dashboard from "../views/UserApp.vue";
 import Home from "../views/HomePage.vue";
 import Community from "../views/Community.vue";
-import Settings from "../views/Settings.vue";
+import SettingsOld from "../views/SettingsOld.vue";
 import NewSchedule from "../views/NewSchedule.vue";
 import activeDevices from "../views/activeDevices.vue";
 import applianceRegister from "../views/applianceRegister.vue"
@@ -24,6 +24,7 @@ import StorageSystem from '../views/StorageSystem.vue'
 import EVregistration from "../views/EVregistration.vue";
 import Summary2 from "../views/Summary2.vue";
 import CommunityProsumers2 from "../views/CommunityProsumers2.vue";
+import InitialApplianceRegistration from "../views/InitialApplianceRegistration.vue"
 
 Vue.use(VueRouter);
 
@@ -68,6 +69,12 @@ const routes = [
     path: "/ev-registration2",
     name: "EVregistration",
     component: EVregistration,
+    meta: { requireAuth: false },
+  },
+  {
+    path: "/initial-appliance-registration",
+    name: "InitialApplianceRegistration",
+    component: InitialApplianceRegistration,
     meta: { requireAuth: false },
   },
   {
@@ -138,15 +145,15 @@ const routes = [
         meta: { requireAuth: true },
       },
       {
-        path: "settings",
-        name: "settings",
-        component: Settings,
+        path: "settingsOld",
+        name: "settingsOld",
+        component: SettingsOld,
         meta: { requireAuth: true },
       },
       {
-        path: "register",
-        name: "register",
-        component: Register,
+        path: "settings",
+        name: "settings",
+        component: Settings,
         meta: { requireAuth: true },
       },
       {

@@ -1,6 +1,6 @@
 <template>
   <div id="container-registerDevices">
-    <h2>Appliances already registered</h2>
+    <h2>Register your home appliances</h2>
     <table class="list-devices">
       <tr
         id="deviceElement"
@@ -14,13 +14,6 @@
           <div class="details-devices">
             <p>{{ device.name }}</p>
             <p>{{ device.details }}</p>
-            <!--<p>{{device.id}}</p>-->
-            <input
-              value="delete"
-              type="submit"
-              style="background-color: #95cafe"
-              @click="deleteData(device.name)"
-            />
           </div>
         </td>
       </tr>
@@ -33,8 +26,8 @@
 
     <div class="modal-select" v-if="modalIsOpen">
       <div id="containt-data">
-        <!-- <button @click="registerData('ev')">EV registration</button> -->
-        <button @click="registerData('appliance')">New appliance</button>
+        <button @click="registerData('ev')">EV registration</button>
+        <button @click="registerData('comfort')">Comfort Parameter</button>
         <button @click="changeModal">Cancel</button>
       </div>
     </div>
@@ -49,19 +42,14 @@ export default {
     return {
       listDevices: [],
       modalIsOpen: false,
-      deleteAppliance:{
-        action:"deleteAppliances",
-        which:""
-      }
     };
   },
   async mounted() {
-    let url = process.env.VUE_APP_API_URL + "home";
+    let url = process.env.VUE_APP_API_URL + "listDevices";
     await axios
       .get(url)
       .then((response) => {
-        this.listDevices = response.data.listDevices;
-        console.log("works!!!")
+        this.listDevices = response.data;
       })
       .catch((err) => {
         switch (err.response.status) {
@@ -81,33 +69,11 @@ export default {
         case "ev":
           this.$router.push({ name: "evregistration" });
           return;
-        case "appliance":
-          this.$router.push({ name: "newAppliance" });
+        case "comfort":
+          this.$router.push({ name: "comfortParameters" });
           return;
         default:
           return;
-      }
-    },
-
-    async updateList(){
-      try{
-        const res = await axios.get(process.env.VUE_APP_API_URL + "home")
-        this.listDevices = res.data.listDevices;
-      }catch(e){
-        console.error(e)
-      }
-    },
-    async deleteData(nameAppli2) {
-      try {
-        console.log(nameAppli2)
-        this.deleteAppliance.which=nameAppli2
-        const res = await axios.post(process.env.VUE_APP_API_URL + "settings",this.deleteAppliance);
-        //const res = await axios.post(process.env.VUE_APP_API_URL + "settings");
-        console.log(res)
-        alert("device deleted");
-        this.updateList()
-      } catch (e) {
-        console.error(e);
       }
     },
   },

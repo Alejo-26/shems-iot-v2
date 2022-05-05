@@ -12,9 +12,9 @@ export const store = new Vuex.Store({
     Tewh_min: "",
     Cess_thresh_high: "",
     Cess_thresh_low: "",
-    //Time_departure: "",
-    //Cpev_thresh_high: "",
-    //Cpev_thresh_low: ""
+    Time_departure: "",
+    Cpev_thresh_high: "",
+    Cpev_thresh_low: ""
     
   },
   mutations:{
@@ -38,7 +38,16 @@ export const store = new Vuex.Store({
     },
     newCess_thresh_low(state,valueF){
       state.Cess_thresh_low = valueF
-    }
+    },
+    newTime_departure(state,valueG){
+      state.Time_departure = valueG
+    },
+    newCpev_thresh_high(state,valueH){
+      state.Cpev_thresh_high = valueH
+    },
+    newCpev_thresh_low(state,valueI){
+      state.Cpev_thresh_low = valueI
+    },
   },
 
 });

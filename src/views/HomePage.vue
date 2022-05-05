@@ -1,6 +1,6 @@
 <template>
   <div id="container-home">
-    <label id="welcome-message">Hello family {{ this.nameUser.name }} <br><br> Active devices</label>
+    <label id="welcome-message">Hello family <!-- {{ this.nameUser.name }} --> <br><br> Active devices</label>
     
     
     
@@ -49,7 +49,7 @@ import FileImage from "../components/FileSvg.vue";
 import axios from "axios";
 export default {
   async mounted() {
-    //Name
+    /* //Name
     let url = process.env.VUE_APP_API_URL + "user";
     await axios
       .get(url)
@@ -62,7 +62,7 @@ export default {
             console.log("error");
             break;
         }
-      });
+      }); */
     //Devices
     let url2 = process.env.VUE_APP_API_URL + "home";
     await axios

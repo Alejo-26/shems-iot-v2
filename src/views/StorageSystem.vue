@@ -8,10 +8,10 @@
     </p>
     <!-- <form id="formRegister" @submit="checkForm"> -->
     <form id="formRegister" >
-      <label for="maxESS">Maximum level of the baterries</label>
+      <label for="maxESS">Maximum level of the baterries(%)</label>
       <input type="number" id="maxESS" v-model="maxLevelBat" />
 
-      <label for="minESS">Minimum level of the baterries</label>
+      <label for="minESS">Minimum level of the baterries(%)</label>
       <input type="number" id="minESS" placeholder="" v-model="minLevelBat"/>
 
 
@@ -58,17 +58,15 @@ export default {
         //We procede to save the information
       }
     },
-    Next() {{
+    Next() {
         // this.$store.commit(""); ///Save in vuex
         this.$store.commit('newCess_thresh_high',this.maxLevelBat)
         this.$store.commit('newCess_thresh_low',this.minLevelBat)
         this.$router.push({ path: "/ev-registration2" });
         
-      }
     },
-    Back() {{
+    Back() {
         this.$router.push({ path: "comfort-parameters2" });
-      }
     },
 
   },
@@ -87,6 +85,7 @@ export default {
 #container-registerConform {
   text-align: center;
   padding: 4em 0em;
+  
 
   #instruction-text {
     font-size: clamp(1em, 1.3vw, 1.6em);
@@ -131,7 +130,7 @@ export default {
     label {
       text-align: start;
       font-weight: bold;
-      font-size: clamp(1.2em, 1.4vw, 1.8em);
+      font-size: clamp(1em, 1.4vw, 1.8em);
     }
   }
   #errors-form {

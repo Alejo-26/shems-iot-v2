@@ -94,7 +94,7 @@
       80
     ]
   },
-  "summary": {
+  "summary2": {
     "labelsWeek": [
       "Monday",
       "Tuesday",
@@ -227,7 +227,7 @@
       "id": 5
     }
   ],
-  "settings": [
+  "settings2": [
     {
       "id": 2,
       "name": "Washing machine",
@@ -263,10 +263,20 @@
       "imgSrc": "welcome-home",
       "details": "Asus",
       "consumption": "200"
+    },
+    {
+      "action": "deleteAppliances",
+      "which": "Air Coinditionator",
+      "id": 13
+    },
+    {
+      "action": "deleteAppliances",
+      "which": "Washing machine",
+      "id": 14
     }
   ],
   "graphSelected": {
-    "nameDevice": "Electric vehicle"
+    "nameDevice": "Dishwasher"
   },
   "consumption-appli": {
     "labelsWashingMachine": [
@@ -359,28 +369,31 @@
   },
   "communityprosumers": [
     {
-      "id": 1,
       "name": "Franceso",
       "interactions": 1,
-      "tot_energy": 575,
-      "totp_price": 248412
+      "tot_energy_sold": 575,
+      "tot_energy_bought": 485,
+      "mean_price_sold": 30,
+      "mean_price_bought": 50
     },
     {
-      "id": 2,
-      "name": "Sara",
-      "interactions": 1,
-      "tot_energy": 600,
-      "tot_price": 280000
-    },
-    {
-      "id": 3,
       "name": "Luisa",
       "interactions": 1,
-      "tot_energy": 625,
-      "tot_price": 293000
+      "tot_energy_sold": 675,
+      "tot_energy_bought": 522,
+      "mean_price_sold": 40,
+      "mean_price_bought": 70
+    },
+    {
+      "name": "Giulia",
+      "interactions": 1,
+      "tot_energy_sold": 775,
+      "tot_energy_bought": 120,
+      "mean_price_sold": 50,
+      "mean_price_bought": 80
     }
   ],
-  "registration": {
+  "registration2": {
     "name": "Federico",
     "Tin_max": "25",
     "Tin_min": "18",
@@ -392,39 +405,45 @@
     "Cpev_thresh_high": "70",
     "Cpev_thresh_low": "30"
   },
-  "registration2": {
+  "registration": {
     "family_name": {
-      "family_name": "Federico",
-      "name": "Acosta"
+      "family_name": "Burno"
     },
-    "EV": {
-      "Time_departure": "09:50",
-      "Cpev_thresh_high": "70",
-      "Cpev_thresh_low": "30"
-    },
+    "EV": {},
     "setpoints": {
-      "Tin_max": "23",
-      "Tin_min": "23",
-      "Tewh_max": "3",
-      "Tewh_min": "232"
+      "Tin_max": "14",
+      "Tin_min": "14",
+      "Tewh_max": "14",
+      "Tewh_min": "14"
     },
     "home_batteries": {
-      "Cess_thresh_high": "55",
-      "Cess_thresh_low": "5"
+      "Cess_thresh_high": "14",
+      "Cess_thresh_low": "14"
     },
     "applianceData": [
       {
-        "name": "washing_machine"
+        "name": "washing_machine",
+        "consumption": "",
+        "running_len": ""
       },
       {
-        "name": "diswasher"
+        "name": "dishwasher",
+        "consumption": "",
+        "running_len": ""
       },
       {
-        "name": "vacuum_cleaner"
+        "name": "none",
+        "consumption": "",
+        "running_len": ""
+      },
+      {
+        "name": "FireTv",
+        "consumption": "200",
+        "running_len": "20"
       }
     ]
   },
-  "summary2": {
+  "summary": {
     "labels": [
       "Monday",
       "Tuesday",
@@ -442,7 +461,10 @@
       9.6,
       10.5,
       11.5
-    ]
+    ],
+    "mean": "9.6",
+    "max": "11.5",
+    "min": "10.2"
   },
   "plots": {
     "labels": [
@@ -462,6 +484,15 @@
       9.6,
       10.5,
       11.5
-    ]
+    ],
+    "min": "12",
+    "max": "18",
+    "mean": "15"
+  },
+  "settings": {
+    "action": "addAppliances",
+    "name": "Diswasher",
+    "consumption": "",
+    "running_length": ""
   }
 }
