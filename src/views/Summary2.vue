@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2 style="text-align: center; margin-bottom: 2em">Summary 2</h2>
+    <h2 style="text-align: center; margin-bottom: 2em">Summary</h2>
 
     <div style="text-align:center;margin-top:20px;margin-bottom:20px">
       <button style="background-color: #95cafe;margin-right:30px" @click="changeObject('consumption')">Consumption</button>

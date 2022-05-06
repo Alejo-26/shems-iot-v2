@@ -1,6 +1,6 @@
 <template>
   <div id="container-registerDevices" >
-    <h2>Community transactions 2</h2>
+    <h2>Community transactions</h2>
     <table class="list-devices" >
       <tr
         id="deviceElement"
@@ -86,8 +86,8 @@ export default {
   async mounted() {
 
     //PROSUMERS
-    let url = process.env.VUE_APP_API_URL + "communityprosumers";
-    //let url = process.env.VUE_APP_API_URL + "community/Prosumers";
+    //let url = process.env.VUE_APP_API_URL + "communityprosumers";
+    let url = process.env.VUE_APP_API_URL + "community/prosumers";
     await axios
       .get(url)
       .then((response) => {
@@ -103,7 +103,7 @@ export default {
       });
 
     //PLOTS
-    let url2 = process.env.VUE_APP_API_URL + "plots";
+    let url2 = process.env.VUE_APP_API_URL + "community/plots";
     await axios
       //.get(url)
       .get(url2,{params:{period:this.optionGraph}})

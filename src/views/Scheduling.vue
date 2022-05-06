@@ -86,7 +86,16 @@ export default {
       this.name2=name
       this.labels2=labels
       this.data2=data
-    }
+    },
+    registerData(type) {
+      switch (type) {
+        case "NewDeviceSchedule":
+          this.$router.push({ name: "newSchedule" });
+          return;
+        default:
+          return;
+      }
+    },
   }
 };
 </script>

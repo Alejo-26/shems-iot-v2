@@ -60,7 +60,8 @@ import axios from "axios";
 export default {
  
  async mounted() {
-    let url = process.env.VUE_APP_API_URL + "changeScheduling";
+    //let url = process.env.VUE_APP_API_URL + "changeScheduling";
+    let url = process.env.VUE_APP_API_URL + "changeScheduling/listDevice";
     await axios
       .get(url)
       .then((response) => {
@@ -130,7 +131,7 @@ export default {
         this.fillInformation2()
         
         //const res = await axios.put(process.env.VUE_APP_API_URL + "scheduling/" + this.newSchedule.id, this.newSchedule)
-        const res = await axios.post(process.env.VUE_APP_API_URL + "changeScheduling2" , this.newSchedule2)
+        const res = await axios.post(process.env.VUE_APP_API_URL + "changeScheduling" , this.newSchedule2)
         console.log(res)
         console.log(this.newSchedule)
         alert("Appliance registered succesfully")

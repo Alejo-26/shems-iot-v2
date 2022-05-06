@@ -71,8 +71,8 @@ import SvgImage from "../components/FileSvg.vue";
 import axios from "axios";
 export default {
   async mounted() {
-    let url = process.env.VUE_APP_API_URL + "settingsoldParameters";
-    //let url = process.env.VUE_APP_API_URL + "settings/oldParameters";
+    //let url = process.env.VUE_APP_API_URL + "settingsoldParameters";
+    let url = process.env.VUE_APP_API_URL + "settings/oldParameters";
     //let url = process.env.VUE_APP_API_URL + "/SHEMS/settings/oldParameters";
     await axios
       .get(url)
