@@ -1,24 +1,15 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-//import Login from "../views/Login.vue";
 import Settings from "../views/Settings.vue";
-import ListDevices from "../views/ListDevices.vue";
-import EVRegister from "../views/EvalRegister.vue";
-import ComfortParameter from "../views/ComfortParameter.vue";
 import Scheduling from "../views/Scheduling.vue";
-import Summary from "../views/Summary.vue";
 import Dashboard from "../views/UserApp.vue";
 import Home from "../views/HomePage.vue";
-import Community from "../views/Community.vue";
-import SettingsOld from "../views/SettingsOld.vue";
 import NewSchedule from "../views/NewSchedule.vue";
 import activeDevices from "../views/activeDevices.vue";
 import applianceRegister from "../views/applianceRegister.vue"
 import newAppliance from "../views/newAppliance.vue"
 import consumptionAppli from "../views/consumptionAppli.vue"
-import CommunityProsumers from "../views/CommunityProsumers.vue"
 import Registration from "../views/Registration.vue";
-import Registration2 from "../views/Registration2.vue";
 import ComfortParameter2 from "../views/ComfortParameter2.vue";
 import StorageSystem from '../views/StorageSystem.vue'
 import EVregistration from "../views/EVregistration.vue";
@@ -29,28 +20,10 @@ import InitialApplianceRegistration from "../views/InitialApplianceRegistration.
 Vue.use(VueRouter);
 
 const routes = [
-/*   {
-    path: "/",
-    name: "Login",
-    component: Login,
-    meta: { requireAuth: false },
-  }, */
-/*   {
-    path: "/register",
-    name: "Register",
-    component: Register,
-    meta: { requireAuth: false },
-  }, */
   {
     path: "/",
     name: "Registration",
     component: Registration,
-    meta: { requireAuth: false },
-  },
-  {
-    path: "/registration2",
-    name: "Registration2",
-    component: Registration2,
     meta: { requireAuth: false },
   },
   {
@@ -84,30 +57,11 @@ const routes = [
     meta: { requireAuth: true },
     children: [
       {
-        path: "list-devices",
-        component: ListDevices,
-        name: "listDevices",
-        meta: { requireAuth: true },
-      },
-      {
         path: "active-devices",
         component: activeDevices,
         name: "activeDevices",
         meta: { requireAuth: true },
       },
-      {
-        path: "comfort-parameters",
-        name: "comfortParameters",
-        component: ComfortParameter,
-        meta: { requireAuth: true },
-      },
-      {
-        path: "ev-registration",
-        name: "evregistration",
-        component: EVRegister,
-        meta: { requireAuth: true },
-      },
-
       {
         path: "scheduling",
         name: "scheduling",
@@ -121,12 +75,6 @@ const routes = [
         meta: { requireAuth: true },
       },
       {
-        path: "summary",
-        name: "summary",
-        component: Summary,
-        meta: { requireAuth: true },
-      },
-      {
         path: "summary2",
         name: "summary2",
         component: Summary2,
@@ -136,18 +84,6 @@ const routes = [
         path: "home-resume",
         name: "home",
         component: Home,
-        meta: { requireAuth: true },
-      },
-      {
-        path: "community",
-        name: "community",
-        component: Community,
-        meta: { requireAuth: true },
-      },
-      {
-        path: "settingsOld",
-        name: "settingsOld",
-        component: SettingsOld,
         meta: { requireAuth: true },
       },
       {
@@ -172,12 +108,6 @@ const routes = [
         path: "consumption-appli",
         name: "consumptionAppli",
         component: consumptionAppli,
-        meta: { requireAuth: true },
-      },
-      {
-        path: "community-prosumers",
-        name: "CommunityProsumers",
-        component: CommunityProsumers,
         meta: { requireAuth: true },
       },
       {

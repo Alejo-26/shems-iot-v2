@@ -15,12 +15,17 @@
           <FileImage :nameImage="this.allDevices[1].imgSrc" width="40vw" />
           <p>{{ this.allDevices[1].name }}</p>
         </button>
-        <button @click="seeAllDevices">
+        <button @click="seeAllDevices2">
           ---
           <p>Others</p>
         </button>
       </div>
     </div>
+    <div v-if="this.openAllDevices===true">
+      <activeDevices :allDevices2="this.allDevices"/>
+    </div>
+    
+
     <div style="margin:30px">
       <div id="detailsElem" style="background-color: #95cafe;text-align: center">
         <h2>{{ this.single_values2.consumption }}</h2>
@@ -46,6 +51,7 @@
 
 <script>
 import FileImage from "../components/FileSvg.vue";
+import activeDevices from "./activeDevices.vue"
 import axios from "axios";
 export default {
   async mounted() {
@@ -84,6 +90,7 @@ export default {
   data() {
     return {
       nameUser: "",
+      openAllDevices:false,
       allDevices: [
 
         {
@@ -111,6 +118,7 @@ export default {
   },
   components: {
     FileImage,
+    activeDevices
   },
   methods: {
     seeAllDevices() {
@@ -118,6 +126,9 @@ export default {
         //name: "listDevices",
         name: "activeDevices",
       });
+    },
+    seeAllDevices2() {
+      this.openAllDevices=!this.openAllDevices
     },
   },
 };

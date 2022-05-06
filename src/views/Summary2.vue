@@ -8,7 +8,8 @@
       <button style="background-color: #95cafe;margin-right:30px" @click="changeObject('ESS_battery')">ESS_battery</button>
     </div>
     
-    <div v-if="optionGraph==='day'">
+    <!-- <div v-if="optionGraph==='day'"> -->
+    <div >
       <bar-line v-if="loaded" :chartData="chartData" :options="options" />
     </div>
 

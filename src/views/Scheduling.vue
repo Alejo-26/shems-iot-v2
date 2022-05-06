@@ -18,15 +18,17 @@
             <p id="hourDevice"><strong>From: </strong>{{ device.starting_time }}</p>
             <p id="hourDevice"><strong>To: </strong>{{ device.ending_time }}</p>
             <p id="hourDevice"><strong>Power: </strong>{{ device.consumption }}</p>
-            <button style="background-color: #95cafe" @click="graphConsumption(device.name)">See consumption</button>
+            <button style="background-color: #95cafe" @click="graphConsumption2(device.name,device.labels,device.data)">See consumption below</button>
           </div>
         </td>
       </tr>
+      <tr></tr>
       <tr id="addElement">
         <td><button @click="changeModal" id="addButtonDevice">+</button></td>
         <td><p for="addButtonDevice">Change schedule</p></td>
       </tr>
     </table>
+    
 
     <div class="modal-select" v-if="modalIsOpen">
       <div id="containt-data">
@@ -34,7 +36,7 @@
         <button @click="changeModal">Cancel</button>
       </div>
     </div>
-
+    <consumAppli  :name3="this.name2" :data3="this.data2" :labels3="this.labels2"/>
 
   </div>
 </template>
@@ -42,6 +44,7 @@
 <script>
 /* eslint-disable */
 import ImageSVG from "../components/FileSvg.vue";
+import consumAppli from "./consumptionAppli.vue"
 import axios from "axios";
 export default {
   async mounted() {
@@ -63,10 +66,14 @@ export default {
     return {
       listDevices: [],
       modalIsOpen: false,
+      name2:"",
+      labels2:[],
+      data2:[]
     };
   },
   components: {
     ImageSVG,
+    consumAppli
   },
   methods:{
     //Pusehs posts to the server when called
@@ -75,22 +82,10 @@ export default {
       this.modalIsOpen = !this.modalIsOpen;
     },
 
-    registerData(type) {
-      switch (type) {
-        case "NewDeviceSchedule":
-          this.$router.push({ name: "newSchedule" });
-          return;
-        default:
-          return;
-      }
-    },
-    async graphConsumption(devicename2){
-      try{
-        const res = await axios.post(process.env.VUE_APP_API_URL + "graphSelected",{"nameDevice":devicename2})
-        this.$router.push({ name: "consumptionAppli" });
-      }catch (e){
-        console.error(e)
-      }  
+    graphConsumption2(name,labels,data){
+      this.name2=name
+      this.labels2=labels
+      this.data2=data
     }
   }
 };

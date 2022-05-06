@@ -45,10 +45,6 @@ export default {
           if (this.$router.currentRoute.name != "summary2")
             this.$router.push({ name: "summary2" });
           break;
-        /* case "Community":
-          if (this.$router.currentRoute.name != "community")
-            this.$router.push({ name: "community" });
-          break; */
 
         case "Community":
           if (this.$router.currentRoute.name != "CommunityProsumers2")

@@ -95,6 +95,26 @@
     ]
   },
   "summary2": {
+    "labels": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday"
+    ],
+    "data": [
+      9.4,
+      9.5,
+      9,
+      9.4,
+      9.6,
+      10.5,
+      11.5
+    ]
+  },
+  "summary3": {
     "labelsWeek": [
       "Monday",
       "Tuesday",
@@ -179,7 +199,25 @@
       "state": "Recharge",
       "starting_time": "3:00",
       "ending_time": "5:00",
-      "consumption": "2000W"
+      "consumption": "2000W",
+      "labels": [
+        "1:00am",
+        "2:00am",
+        "3:00am",
+        "4:00am",
+        "5:00am",
+        "6:00am",
+        "7:00am"
+      ],
+      "data": [
+        0,
+        0,
+        2000,
+        2000,
+        2000,
+        0,
+        0
+      ]
     },
     {
       "id": 2,
@@ -188,7 +226,27 @@
       "state": "Turn on",
       "starting_time": "19:00",
       "ending_time": "20:00",
-      "consumption": "500W"
+      "consumption": "500W",
+      "labels": [
+        "16:00",
+        "17:00",
+        "18:00",
+        "19:00",
+        "20:00",
+        "21:00",
+        "22:00",
+        "25:00"
+      ],
+      "data": [
+        0,
+        0,
+        0,
+        500,
+        500,
+        0,
+        0,
+        0
+      ]
     },
     {
       "id": 3,
@@ -197,7 +255,27 @@
       "state": "Turn on",
       "starting_time": "20:30",
       "ending_time": "21:00",
-      "consumption": "1200W"
+      "consumption": "1200W",
+      "labels": [
+        "18:00",
+        "18:30",
+        "19:00",
+        "19:30",
+        "20:00",
+        "20:30",
+        "21:00",
+        "21:30"
+      ],
+      "data": [
+        0,
+        0,
+        0,
+        1200,
+        1200,
+        0,
+        0,
+        0
+      ]
     }
   ],
   "newSchedules": [
@@ -276,7 +354,7 @@
     }
   ],
   "graphSelected": {
-    "nameDevice": "Dishwasher"
+    "nameDevice": "Electric vehicle"
   },
   "consumption-appli": {
     "labelsWashingMachine": [
@@ -407,18 +485,18 @@
   },
   "registration": {
     "family_name": {
-      "family_name": "Burno"
+      "family_name": "Bruno2"
     },
     "EV": {},
     "setpoints": {
-      "Tin_max": "14",
-      "Tin_min": "14",
-      "Tewh_max": "14",
-      "Tewh_min": "14"
+      "Tin_max": "23",
+      "Tin_min": "23",
+      "Tewh_max": "23",
+      "Tewh_min": "23"
     },
     "home_batteries": {
-      "Cess_thresh_high": "14",
-      "Cess_thresh_low": "14"
+      "Cess_thresh_high": "23",
+      "Cess_thresh_low": "23"
     },
     "applianceData": [
       {
@@ -432,14 +510,14 @@
         "running_len": ""
       },
       {
-        "name": "none",
+        "name": "vacuum_cleaner",
         "consumption": "",
         "running_len": ""
       },
       {
-        "name": "FireTv",
-        "consumption": "200",
-        "running_len": "20"
+        "name": "none",
+        "consumption": "",
+        "running_len": ""
       }
     ]
   },

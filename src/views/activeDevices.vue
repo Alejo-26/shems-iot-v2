@@ -4,7 +4,7 @@
     <table class="list-devices">
       <tr
         id="deviceElement"
-        v-for="(device, index) in listDevices"
+        v-for="(device, index) in allDevices2"
         :key="index"
       >
         <td>
@@ -39,7 +39,7 @@
 
 <script>
 import FileImage from "../components/FileSvg.vue";
-import axios from "axios";
+//import axios from "axios";
 export default {
   data() {
     return {
@@ -47,7 +47,7 @@ export default {
       modalIsOpen: false,
     };
   },
-  async mounted() {
+/*   async mounted() {
     let url = process.env.VUE_APP_API_URL + "home";
     await axios
       .get(url)
@@ -61,27 +61,18 @@ export default {
             break;
         }
       });
-  },
+  }, */
   methods: {
     changeModal() {
       this.modalIsOpen = !this.modalIsOpen;
     },
 
-    registerData(type) {
-      switch (type) {
-        case "ev":
-          this.$router.push({ name: "evregistration" });
-          return;
-        case "comfort":
-          this.$router.push({ name: "comfortParameters" });
-          return;
-        default:
-          return;
-      }
-    },
   },
   components: {
     FileImage,
+  },
+  props: {
+    allDevices2:Array,
   },
 };
 </script>
