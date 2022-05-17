@@ -47,6 +47,8 @@ import axios from "axios";
 export default {
   data() {
     return {
+      response2:"",
+      response3:{},
       listDevices: [],
       modalIsOpen: false,
       deleteAppliance:{
@@ -60,7 +62,9 @@ export default {
     await axios
       .get(url)
       .then((response) => {
-        this.listDevices = response.data.listDevices;
+        this.response2=response.data.replace(/'/g, '"')
+        this.response3=JSON.parse(this.response2)
+        this.listDevices = this.response3.listDevices;
         console.log("works!!!")
       })
       .catch((err) => {
@@ -92,7 +96,9 @@ export default {
     async updateList(){
       try{
         const res = await axios.get(process.env.VUE_APP_API_URL + "home")
-        this.listDevices = res.data.listDevices;
+        this.response2=response.data.replace(/'/g, '"')
+        this.response3=JSON.parse(this.response2)
+        this.listDevices = this.response3.listDevices;
       }catch(e){
         console.error(e)
       }

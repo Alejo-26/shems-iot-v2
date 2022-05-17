@@ -25,7 +25,7 @@
         </ul>
       </spam>
       <input type="submit" value="Back" @click="comeBack()"/>
-      <input type="button" value="Skip the car" @click="SkipCar()"/> 
+      <input type="submit" value="Skip the car" @click="SkipCar()"/> 
       <input type="submit" value="Save and Next"  @click="Next()"/>
       
 
@@ -104,10 +104,12 @@ export default {
         this.$router.push({ path: "initial-appliance-registration" });
     },
     Next() {
-        this.$store.commit('newTime_departure',this.departureTime)
-        this.$store.commit('newCpev_thresh_high',this.maxBaterry)
-        this.$store.commit('newCpev_thresh_low',this.minBaterry)
-        this.$router.push({ path: "initial-appliance-registration" });
+      console.log("LO HAGO !!!!!!!!!")
+      console.log(this.departureTime)
+      this.$store.commit('newTime_departure',this.departureTime)
+      this.$store.commit('newCpev_thresh_high',this.maxBaterry)
+      this.$store.commit('newCpev_thresh_low',this.minBaterry)
+      this.$router.push({ path: "initial-appliance-registration" });
     },
 
 /*     fillData(){

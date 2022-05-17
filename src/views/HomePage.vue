@@ -4,15 +4,17 @@
     
     
     
-    <div id="resume-devices">
+    <div id="resume-devices" v-if="this.allDevices.length > 0">
       
       <button v-if="this.allDevices.length > 0">
-        <FileImage :nameImage="this.allDevices[0].imgSrc" width="60vw" />
+        <!-- <FileImage :nameImage="this.allDevices[0].imgSrc" width="60vw" /> -->
+        <FileImage :nameImage="this.defalutNameImage" width="60vw" />
         <p>{{ this.allDevices[0].name }}</p>
       </button>
-      <div id="other-sect">
+      <div id="other-sect" v-if="this.allDevices.length > 1">
         <button>
-          <FileImage :nameImage="this.allDevices[1].imgSrc" width="40vw" />
+          <!-- <FileImage :nameImage="this.allDevices[1].imgSrc" width="40vw" /> -->
+          <FileImage :nameImage="this.defalutNameImage" width="60vw" />
           <p>{{ this.allDevices[1].name }}</p>
         </button>
         <button @click="seeAllDevices2">
@@ -28,17 +30,17 @@
 
     <div style="margin:30px">
       <div id="detailsElem" style="background-color: #95cafe;text-align: center">
-        <h2>{{ this.single_values2.consumption }}</h2>
+        <h2>{{ this.single_values2.consumption.toFixed(2) }}</h2>
         <p>Actual consumption</p>
       </div>
       <br>
       <div id="detailsElem" style="background-color: #95cafe;text-align: center">
-        <h2>{{ this.single_values2.ESS_bateery }}</h2>
+        <h2>{{ this.single_values2.ESS_battery.toFixed(2) }}</h2>
         <p>House battery level</p>
       </div>
       <br>
       <div id="detailsElem" style="background-color: #95cafe;text-align: center">
-        <h2>{{ this.single_values2.EV_battery }}</h2>
+        <h2>{{ this.single_values2.EV_battery.toFixed(2) }}</h2>
         <p>Electric Vehicle battery level</p>
       </div>
     </div>
@@ -74,9 +76,31 @@ export default {
     await axios
       .get(url2)
       .then((response) => {
-        console.log(response.data.single_values.consumption)
-        this.allDevices = response.data.listDevices;
+        this.response2=response.data.replace(/'/g, '"')
+        this.response3=JSON.parse(this.response2)
+        console.log(this.response3.single_values.consumption)
+        this.allDevices = this.response3.listDevices,
+        this.single_values2 = this.response3.single_values
+        /* this.allDevices = response.data.listDevices;
         this.single_values2=response.data.single_values;
+ */
+        /* console.log("Prove1")
+        console.log(this.prove1)
+        console.log(typeof this.prove1)
+        console.log("Prove2")
+        console.log(this.prove2)
+        console.log(typeof this.prove2)
+        console.log("CONVERSION of prove1 into PROVE3")
+        //this.prove3=JSON.parse(this.prove1)
+        this.prove3=this.prove1.replace(/'/g, '"')
+        console.log(this.prove3)
+        console.log(typeof this.prove3)
+        console.log("CONVERSION of prove1 into PROVE4!!!!!!!!!!")
+        this.prove4=JSON.parse(this.prove3)
+        console.log(this.prove4)
+        console.log(typeof this.prove4) */
+        
+
       })
       .catch((err) => {
         switch (err.response.status) {
@@ -89,6 +113,22 @@ export default {
   },
   data() {
     return {
+      defalutNameImage:"welcome-home",
+      response2:"",
+      response3:{},
+     /*  response3:{
+        listDevices:{
+
+        },
+        single_values:{
+
+        }
+      }, */
+      //prove1:'{"result":true, "count":42}',
+      prove1:"{'result':true, 'count':42}",
+      prove2:{"result":true, "count":42},
+      prove3:"",
+      prove4:"",
       nameUser: "",
       openAllDevices:false,
       allDevices: [

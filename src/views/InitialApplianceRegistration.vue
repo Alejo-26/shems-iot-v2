@@ -158,9 +158,9 @@ export default {
       this.payload.setpoints.Tewh_min=this.$store.state.Tewh_min
       this.payload.home_batteries.Cess_thresh_high=this.$store.state.Cess_thresh_high
       this.payload.home_batteries.Cess_thresh_low=this.$store.state.Cess_thresh_low
-      this.payload.EV.Time_departure=this.$store.Time_departure
-      this.payload.EV.Cpev_thresh_high=this.$store.Cpev_thresh_high
-      this.payload.EV.Cpev_thresh_low=this.$store.Cpev_thresh_low
+      this.payload.EV.Time_departure=this.$store.state.Time_departure
+      this.payload.EV.Cpev_thresh_high=this.$store.state.Cpev_thresh_high
+      this.payload.EV.Cpev_thresh_low=this.$store.state.Cpev_thresh_low
 
     },
     fillApplianceData(){
@@ -196,6 +196,7 @@ export default {
       this.fillData()
       this.fillApplianceData()
       try {
+        console.log(this.$store.Time_departure)
         //const res = await axios.post(process.env.VUE_APP_API_URL + "appliances-registered", this.newAppliance)
         //this.fillData();
         //const res = await axios.post(process.env.VUE_APP_API_URL + "user", {name:this.$store.state.name})

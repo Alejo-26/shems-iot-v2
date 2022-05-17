@@ -18,11 +18,11 @@
 
       <div v-if="selected==='Other'">
         <label for="nameAppli">Type of the appliance</label>
-        <input type="text" id="nameAppli"  v-model="newAppliance.name" />
+        <input type="text" id="nameAppli"  v-model="newAppliance.applianceData.name" />
         <label for="consumption">Consumption in W</label>
-        <input type="text" id="consumption"  v-model="newAppliance.consumption" />
+        <input type="text" id="consumption"  v-model="newAppliance.applianceData.consumption" />
         <label for="running_length">Normally working time in minutes</label>
-        <input type="number" id="running_lenght"  v-model="newAppliance.running_length" />
+        <input type="number" id="running_lenght"  v-model="newAppliance.applianceData.running_length" />
       </div>
       
 
@@ -52,9 +52,12 @@ export default {
     
       newAppliance:{
         action:"addAppliances",
-        name:"",
-        consumption:"",
-        running_length:"",
+        applianceData:{
+          name:"",
+          consumption:"",
+          running_length:"",
+        }
+        
       },
       errors: [],
       selected: '',
@@ -93,15 +96,15 @@ export default {
       }
     },
     fillInformation(){
-      if (this.selected == "Washing machine"){this.newAppliance.name=this.selected,this.newAppliance.action="addAppliances"}
-      if (this.selected == "Diswasher"){this.newAppliance.name=this.selected,this.newAppliance.action="addAppliances"}
-      if (this.selected == "Vacuum cleaner"){this.newAppliance.name=this.selected,this.newAppliance.action="addAppliances"}
+      if (this.selected == "Washing machine"){this.newAppliance.applianceData.name=this.selected,this.newAppliance.action="addAppliances"}
+      if (this.selected == "Diswasher"){this.newAppliance.applianceData.name=this.selected,this.newAppliance.action="addAppliances"}
+      if (this.selected == "Vacuum cleaner"){this.newAppliance.applianceData.name=this.selected,this.newAppliance.action="addAppliances"}
       if (this.selected == "Other"){this.newAppliance.action="addAppliances"}
     },
     reset(){
-      this.newAppliance.name="",
-      this.newAppliance.consumption="",
-      this.newAppliance.running_length=""
+      this.newAppliance.applianceData.name="",
+      this.newAppliance.applianceData.consumption="",
+      this.newAppliance.applianceData.running_length=""
 
     },
     async saveData2(){

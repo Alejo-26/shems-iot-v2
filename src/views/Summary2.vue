@@ -56,12 +56,14 @@ export default {
       //.get(url)
       .get(url,{params:{period:'day',object:'consumption'}})
       .then((response) => {
-        console.log(response.data)
-        this.chartData.datasets[0].data = response.data.data
-        this.chartData.labels = response.data.labels
-        this.mean = response.data.mean
-        this.max = response.data.max
-        this.min = response.data.min
+        this.response2=response.data.replace(/'/g, '"')
+        this.response3=JSON.parse(this.response2)
+
+        this.chartData.datasets[0].data = this.response3.data
+        this.chartData.labels = this.response3.labels
+        this.mean = this.response3.mean
+        this.max = this.response3.max
+        this.min = this.response3.min
         
 
         this.loaded=true
@@ -78,6 +80,8 @@ export default {
   data() {
     //vue-chart.vue
     return {
+      response2:"",
+      response3:{},
       optionGraph:"day",
       object:"consumption",
       loaded:false,
@@ -180,13 +184,15 @@ export default {
     },
     async updateData() {
     //we update the data for the graph;
-    let url = process.env.VUE_APP_API_URL + "summary2";
+    let url = process.env.VUE_APP_API_URL + "summary";
     await axios
       .get(url,{params:{period:this.optionGraph,object:this.object}})
       .then((response) => {
-        console.log(response.data)
-        this.chartData.datasets[0].data = response.data.data
-        this.chartData.labels = response.data.labels
+        this.response2=response.data.replace(/'/g, '"')
+        this.response3=JSON.parse(this.response2)
+        //console.log(response.data)
+        this.chartData.datasets[0].data = this.response3.data
+        this.chartData.labels = this.response3.labels
         this.loaded=true
         //this.listDevices = response.data;
       })

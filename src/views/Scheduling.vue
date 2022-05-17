@@ -5,7 +5,7 @@
       <tr v-for="(device, index) in listDevices" v-bind:key="index">
         <td>
           <div class="containerdDeviceImage" @click="graphConsumption(device.name)">
-            <ImageSVG :nameImage="device.imgSrc" width="50vw"  />
+            <ImageSVG :nameImage="this.defalutNameImage" width="50vw"  />
           </div>
         </td>
         <td>
@@ -52,7 +52,9 @@ export default {
     await axios
       .get(url)
       .then((response) => {
-        this.listDevices = response.data;
+        this.response2=response.data.replace(/'/g, '"')
+        this.response3=JSON.parse(this.response2)
+        this.listDevices = this.response3
       })
       .catch((err) => {
         switch (err.response.status) {
@@ -64,7 +66,10 @@ export default {
   },
   data() {
     return {
+      defalutNameImage:"welcome-home",
       listDevices: [],
+      response2:"",
+      response3:{},
       modalIsOpen: false,
       name2:"",
       labels2:[],

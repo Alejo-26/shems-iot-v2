@@ -485,22 +485,26 @@
   },
   "registration": {
     "family_name": {
-      "family_name": "Bruno2"
+      "family_name": "BRUNO7"
     },
-    "EV": {},
+    "EV": {
+      "Time_departure": "15:05",
+      "Cpev_thresh_high": "46",
+      "Cpev_thresh_low": "46"
+    },
     "setpoints": {
-      "Tin_max": "23",
-      "Tin_min": "23",
-      "Tewh_max": "23",
-      "Tewh_min": "23"
+      "Tin_max": "6",
+      "Tin_min": "6",
+      "Tewh_max": "6",
+      "Tewh_min": "6"
     },
     "home_batteries": {
-      "Cess_thresh_high": "23",
-      "Cess_thresh_low": "23"
+      "Cess_thresh_high": "46",
+      "Cess_thresh_low": "46"
     },
     "applianceData": [
       {
-        "name": "washing_machine",
+        "name": "none",
         "consumption": "",
         "running_len": ""
       },

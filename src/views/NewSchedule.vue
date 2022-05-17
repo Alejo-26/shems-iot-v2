@@ -65,7 +65,9 @@ export default {
     await axios
       .get(url)
       .then((response) => {
-        this.listDevices = response.data.listDevices;
+        this.response2=response.data.replace(/'/g, '"')
+        this.response3=JSON.parse(this.response2)
+        this.listDevices = response3.listDevices;
       })
       .catch((err) => {
         switch (err.response.status) {
@@ -79,6 +81,8 @@ export default {
     return {
      // device: "",
       //newTime2: "",
+      response2:"",
+      response3:{},
       listDevices:[],
       id:1,
       errors: [],

@@ -39,6 +39,10 @@ import axios from "axios";
 export default {
   data() {
     return {
+      response2:"",
+      response3:{},
+      response4:"",
+      response5:{},
       listDevices: [],
       modalIsOpen: false,
       optionGraph:"energySold",
@@ -91,7 +95,9 @@ export default {
     await axios
       .get(url)
       .then((response) => {
-        this.listDevices = response.data;
+        this.response2=response.data.replace(/'/g, '"')
+        this.response3=JSON.parse(this.response2)
+        this.listDevices = this.response3;
         console.log(this.listDevices)
       })
       .catch((err) => {
@@ -109,8 +115,10 @@ export default {
       .get(url2,{params:{period:this.optionGraph}})
       .then((response) => {
         console.log(response.data)
-        this.chartData.datasets[0].data = response.data.data
-        this.chartData.labels = response.data.labels
+        this.response4=response.data.replace(/'/g, '"')
+        this.response5=JSON.parse(this.response4)
+        this.chartData.datasets[0].data = this.response5.data
+        this.chartData.labels = this.response5.labels
         this.loaded=true
         //this.listDevices = response.data;
       })
@@ -147,13 +155,15 @@ export default {
     },
     async updateData() {
     //we update the data for the graph;
-    let url = process.env.VUE_APP_API_URL + "plots";
+    let url = process.env.VUE_APP_API_URL + "community/plots";
     await axios
       .get(url,{params:{period:this.optionGraph}})
       .then((response) => {
         console.log(response.data)
-        this.chartData.datasets[0].data = response.data.data
-        this.chartData.labels = response.data.labels
+        this.response4=response.data.replace(/'/g, '"')
+        this.response5=JSON.parse(this.response4)
+        this.chartData.datasets[0].data = this.response5.data
+        this.chartData.labels = this.response5.labels
         this.loaded=true
         //this.listDevices = response.data;
       })
